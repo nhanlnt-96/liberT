@@ -19,12 +19,17 @@
   }
 }
 
+.main-header-container .main-header-logo img {
+  width: 80%;
+}
+
 .main-header-menu .header-menu-item {
   .item {
     color: #fff !important;
     font-weight: 700;
     position: relative;
     text-transform: uppercase;
+    font-size: 20px;
 
     &:after {
       position: absolute;
@@ -44,17 +49,13 @@
   }
 
   @include mobile {
-    &:not(:first-child) {
-      margin-top: 12px;
-    }
+    margin-top: 12px;
     .item {
       margin-bottom: 12px
     }
   }
   @include tablet {
-    &:not(:first-child) {
-      margin-top: 12px;
-    }
+    margin-top: 12px;
     .item {
       margin-bottom: 12px
     }

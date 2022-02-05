@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Container, Nav, Navbar} from "react-bootstrap";
 import {mainHeaderMenu} from "configs/mainHeaderMenu";
+import Logo from "assets/imgs/logo.webp";
 
 import "./MainHeader.scss";
 
@@ -9,6 +10,9 @@ const MainHeader = () => {
   return (
     <Navbar collapseOnSelect expand="lg" className="main-header">
       <Container className="main-header-container">
+        <Navbar.Brand href="#home" className="main-header-logo d-flex justify-content-center align-items-center">
+          <img src={Logo} alt="delta-fitness-logo"/>
+        </Navbar.Brand>
         <Navbar.Toggle onClick={() => setIsActive(!isActive)} aria-controls="responsive-navbar-nav"
                        className={`main-header-toggle-custom ${isActive && "active"}`}>
           <span className="toggle-line"/>
@@ -25,9 +29,9 @@ const MainHeader = () => {
               ))
             }
           </Nav>
-          <Nav className="main-header-button">
-            <button className="button-item">Connect Wallet</button>
-          </Nav>
+          {/*<Nav className="main-header-button">*/}
+          {/*  <button className="button-item">Connect Wallet</button>*/}
+          {/*</Nav>*/}
         </Navbar.Collapse>
       </Container>
     </Navbar>
