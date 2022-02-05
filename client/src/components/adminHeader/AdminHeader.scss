@@ -1,0 +1,11 @@
+.admin-header-container {
+  .admin-header-toggle {
+    border: none;
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+      border: none;
+    }
+  }
+}

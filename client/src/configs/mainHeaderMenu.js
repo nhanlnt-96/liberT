@@ -1,0 +1,30 @@
+export const mainHeaderMenu = [
+  {
+    label:"home",
+    path:"#home"
+  },
+  {
+    label:"about",
+    path:"#about"
+  },
+  {
+    label:"collection",
+    path:"#collection"
+  },
+  {
+    label:"roadmap",
+    path:"#roadmap"
+  },
+  {
+    label:"faq",
+    path:"#faq"
+  },
+  {
+    label:"rarity",
+    path:"#rarity"
+  },
+  {
+    label:"team",
+    path:"#team"
+  },
+]
