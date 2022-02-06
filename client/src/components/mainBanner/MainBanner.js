@@ -9,6 +9,7 @@ import {connect} from "redux/blockchain/blockchainActions";
 import {fetchData} from "redux/data/dataActions";
 
 import "./MainBanner.scss";
+import ToastNoti from "components/mainBanner/component/ToastNoti";
 
 const MainBanner = () => {
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ const MainBanner = () => {
         </Col>
       </Row>
       <ScrollDownComp/>
+      <ToastNoti errorMsg={blockchain.errorMsg}/>
     </Container>
   );
 };
