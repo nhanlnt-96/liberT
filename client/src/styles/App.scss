@@ -124,3 +124,7 @@
   background-color: #9da0ef;
   border-radius: 20px;
 }
+
+.main-content-height {
+  min-height: calc(100vh - 68.39px - 65.59px);
+}

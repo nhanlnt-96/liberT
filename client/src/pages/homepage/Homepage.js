@@ -1,11 +1,13 @@
 import React from "react";
-import {Container} from "react-bootstrap";
-import MainHeader from "components/mainHeader/MainHeader";
+import {Container, Row} from "react-bootstrap";
+import MainBanner from "components/mainBanner/MainBanner";
 
 const Homepage = () => {
   return (
-    <Container fluid style={{height: "100vh"}} className="bg-dark">
-      <MainHeader/>
+    <Container fluid className="homepage-container">
+      <Row id="home">
+        <MainBanner/>
+      </Row>
     </Container>
   );
 };

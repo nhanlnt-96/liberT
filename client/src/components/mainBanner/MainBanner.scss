@@ -1,0 +1,78 @@
+@import "../../styles/rwd";
+
+.main-banner {
+  background: url("../../assets/imgs/banner/background.png") no-repeat center;
+  background-size: 100% 100%;
+  min-height: 100vh;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  overflow: hidden;
+
+  &-left {
+    color: #ffffff;
+
+    &__container {
+      height: 100%;
+    }
+  }
+
+  &-title {
+    text-transform: uppercase;
+    font-size: 72px;
+  }
+
+  &-subtitle {
+    margin: 36px 0;
+    font-size: 40px;
+  }
+
+  &-description {
+    font-size: 35px;
+  }
+
+  &-button .button-item {
+    border: none;
+    border-radius: 24px;
+    font-weight: bold;
+    outline: none;
+    text-transform: uppercase;
+    color: #ffffff;
+    background-color: #000123;
+    width: 200px;
+    padding: 12px 0;
+    margin-top: 48px;
+    transition: letter-spacing .1s;
+
+    &:hover {
+      letter-spacing: 2px;
+    }
+  }
+
+  &-right {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  @include mobile {
+    &-right {
+      display: none;
+    }
+    &-title {
+      font-size: 40px;
+    }
+    &-subtitle {
+      font-size: 25px;
+      margin: 12px 0;
+    }
+    &-description {
+      font-size: 18px;
+    }
+  }
+}
