@@ -61,6 +61,9 @@
   }
 
   @include mobile {
+    &-content {
+      padding: 24px 0;
+    }
     &-right {
       display: none;
     }
@@ -73,6 +76,14 @@
     }
     &-description {
       font-size: 20px;
+    }
+  }
+  @include tablet {
+    &-content {
+      padding: 24px 0;
+    }
+    &-right {
+      display: none;
     }
   }
 }
