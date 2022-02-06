@@ -19,8 +19,25 @@
   }
 }
 
-.main-header-container .main-header-logo img {
-  width: 80%;
+.main-header-container .main-header-logo {
+  img {
+    width: 240px;
+  }
+
+  @include smallScreen {
+    img {
+      width: 200px;
+    }
+  }
+
+  @include mobile {
+    flex: 1;
+    justify-content: flex-start !important;
+  }
+  @include tablet {
+    flex: 1;
+    justify-content: flex-start !important;
+  }
 }
 
 .main-header-menu .header-menu-item {
