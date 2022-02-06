@@ -29,9 +29,6 @@ const MainHeader = () => {
               ))
             }
           </Nav>
-          {/*<Nav className="main-header-button">*/}
-          {/*  <button className="button-item">Connect Wallet</button>*/}
-          {/*</Nav>*/}
         </Navbar.Collapse>
       </Container>
     </Navbar>
