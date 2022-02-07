@@ -125,6 +125,11 @@
   border-radius: 20px;
 }
 
+.main-container-height {
+  min-height: 100vh;
+  padding: 24px 0 0;
+}
+
 .main-content-height {
   min-height: calc(100vh - 152px - 65.59px);
 }

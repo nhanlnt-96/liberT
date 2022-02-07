@@ -2,6 +2,7 @@ import React from "react";
 import {Container, Row} from "react-bootstrap";
 import MainBanner from "components/mainBanner/MainBanner";
 import MainInvestment from "components/mainInvestment/MainInvestment";
+import MainHowItWorks from "components/mainHowItWork/MainHowItWorks";
 
 import "./Homepage.scss";
 
@@ -13,6 +14,9 @@ const Homepage = () => {
       </Row>
       <Row id="investment">
         <MainInvestment/>
+      </Row>
+      <Row id="how-it-works">
+        <MainHowItWorks/>
       </Row>
     </Container>
   );

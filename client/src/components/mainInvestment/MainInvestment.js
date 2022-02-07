@@ -9,7 +9,7 @@ import "./MainInvestment.scss";
 
 const MainInvestment = () => {
   return (
-    <Container fluid className="main-investment">
+    <Container fluid className="main-container-height main-investment">
       <PrimaryTitle title={"investment summary"}/>
       <img src={LeftSideImg} alt="liberT" className="left-side-img"/>
       <Container className="main-investment-container">
