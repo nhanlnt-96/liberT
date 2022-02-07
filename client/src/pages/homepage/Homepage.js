@@ -4,6 +4,7 @@ import MainBanner from "components/mainBanner/MainBanner";
 import MainInvestment from "components/mainInvestment/MainInvestment";
 import MainHowItWorks from "components/mainHowItWork/MainHowItWorks";
 import MainRoadmap from "components/mainRoadmap/MainRoadmap";
+import MainTeam from "components/mainTeam/MainTeam";
 
 import "./Homepage.scss";
 
@@ -21,6 +22,9 @@ const Homepage = () => {
       </Row>
       <Row id="roadmap">
         <MainRoadmap/>
+      </Row>
+      <Row id="team">
+        <MainTeam/>
       </Row>
     </Container>
   );

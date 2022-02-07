@@ -1,0 +1,100 @@
+@import "../../styles/rwd";
+
+.main-team {
+  position: relative;
+  overflow: hidden;
+
+  &-container {
+    padding: 24px 0 !important;
+  }
+
+  &-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    top: 104px;
+    transform: rotate(90deg) scaleY(2);
+  }
+
+  @include mobile {
+    &-content {
+      margin: 0 !important;
+    }
+    &-img {
+      transform: scale(10);
+    }
+  }
+  @include tablet {
+    &-img {
+      transform: scale(10);
+    }
+  }
+}
+
+.main-team-container .main-team-content {
+  width: 100%;
+
+  .item-container {
+    width: 600px;
+    height: 200px;
+
+    &:not(:first-child) {
+      margin-top: 24px;
+    }
+
+    .member-info {
+      position: relative;
+      width: 500px;
+      height: 100%;
+      background-color: #6d6f70;
+      padding: 24px 112px;
+    }
+
+    .member-ava {
+      background-color: #d9d9d9;
+      border-radius: 100%;
+      width: 200px;
+      overflow: hidden;
+      height: 200px;
+      position: absolute;
+      top: 0;
+      right: -100px;
+      padding: 12px;
+      border: 10px;
+
+      img {
+        width: 100%;
+        border-radius: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .member-name {
+      font-weight: bold;
+      color: #ffffff;
+      font-size: 35px;
+      text-align: center;
+    }
+
+    .member-position {
+      color: #000000;
+      text-align: center;
+      margin-top: 24px;
+      font-size: 20px;
+    }
+  }
+
+  @include mobile {
+    .item-container {
+      width: 100%;
+    }
+    .member-info {
+      width: 100% !important;
+      padding: 12px !important;
+    }
+    .member-ava {
+      display: none !important;
+    }
+  }
+}
