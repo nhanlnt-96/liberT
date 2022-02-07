@@ -22,7 +22,7 @@ const MainBanner = () => {
   return (
     <Container fluid className="main-banner">
       <MainHeader/>
-      <Row className="main-content-height main-banner-content">
+      <Row className="main-banner-content">
         <Col lg={7} md={12} className="main-banner-left">
           <Container
             className="d-flex flex-column justify-content-center align-items-center main-banner-left__container">

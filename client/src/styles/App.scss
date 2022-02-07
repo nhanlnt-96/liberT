@@ -126,8 +126,5 @@
 }
 
 .main-content-height {
-  min-height: calc(100vh - 68.39px - 65.59px);
-  @include smallScreen {
-    min-height: calc(100vh - 61.33px - 65.59px);
-  }
+  min-height: calc(100vh - 152px - 65.59px);
 }

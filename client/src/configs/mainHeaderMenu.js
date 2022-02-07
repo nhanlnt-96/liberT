@@ -1,30 +1,26 @@
 export const mainHeaderMenu = [
   {
-    label:"home",
-    path:"#home"
+    label: "home",
+    path: "#home"
   },
   {
-    label:"about",
-    path:"#about"
+    label: "investment summary",
+    path: "#investment"
   },
   {
-    label:"collection",
-    path:"#collection"
+    label: "how it works",
+    path: "#how-it-works"
   },
   {
-    label:"roadmap",
-    path:"#roadmap"
+    label: "roadmap",
+    path: "#roadmap"
   },
   {
-    label:"faq",
-    path:"#faq"
+    label: "faq",
+    path: "#faq"
   },
   {
-    label:"rarity",
-    path:"#rarity"
+    label: "team",
+    path: "#team"
   },
-  {
-    label:"team",
-    path:"#team"
-  },
-]
+];
