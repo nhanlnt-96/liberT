@@ -63,9 +63,9 @@
 
     .section-item {
       position: relative;
-
       width: 100%;
       min-height: 510px;
+      padding-top: 60px;
 
       &-number, &-content {
         z-index: 1;
@@ -171,6 +171,10 @@
 
         &-container {
           width: 100%;
+          min-height: 400px;
+          background-image: unset;
+          background-color: #c9c9c9;
+          border-radius: 12px;
         }
 
         .top-arrow, .bottom-arrow, .arrow-item {
@@ -202,6 +206,10 @@
 
         &-container {
           width: 100%;
+          min-height: 400px;
+          background-image: unset;
+          background-color: #c9c9c9;
+          border-radius: 12px;
         }
 
         .top-arrow, .bottom-arrow, .arrow-item {
