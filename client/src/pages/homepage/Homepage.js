@@ -5,6 +5,7 @@ import MainInvestment from "components/mainInvestment/MainInvestment";
 import MainHowItWorks from "components/mainHowItWork/MainHowItWorks";
 import MainRoadmap from "components/mainRoadmap/MainRoadmap";
 import MainTeam from "components/mainTeam/MainTeam";
+import MainFaq from "components/mainFaq/MainFaq";
 
 import "./Homepage.scss";
 
@@ -22,6 +23,9 @@ const Homepage = () => {
       </Row>
       <Row id="roadmap">
         <MainRoadmap/>
+      </Row>
+      <Row id="faq">
+        <MainFaq/>
       </Row>
       <Row id="team">
         <MainTeam/>

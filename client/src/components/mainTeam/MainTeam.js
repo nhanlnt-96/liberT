@@ -1,7 +1,6 @@
 import React from "react";
 import {Container, Row} from "react-bootstrap";
 import PrimaryTitle from "components/primaryTitle/PrimaryTitle";
-import BgShape from "assets/shapes/howShapeBg.png";
 
 import "./MainTeam.scss";
 import {teamData} from "configs/teamData";
@@ -10,7 +9,6 @@ const MainTeam = () => {
   return (
     <Container fluid className="main-container-height main-team">
       <PrimaryTitle title={"team"}/>
-      <img src={BgShape} alt="" className="main-team-img"/>
       <Container className="main-team-container">
         <Row
           className="main-content-height main-team-content d-flex flex-column justify-content-center align-items-center">
