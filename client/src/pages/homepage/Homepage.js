@@ -3,6 +3,7 @@ import {Container, Row} from "react-bootstrap";
 import MainBanner from "components/mainBanner/MainBanner";
 import MainInvestment from "components/mainInvestment/MainInvestment";
 import MainHowItWorks from "components/mainHowItWork/MainHowItWorks";
+import MainRoadmap from "components/mainRoadmap/MainRoadmap";
 
 import "./Homepage.scss";
 
@@ -17,6 +18,9 @@ const Homepage = () => {
       </Row>
       <Row id="how-it-works">
         <MainHowItWorks/>
+      </Row>
+      <Row id="roadmap">
+        <MainRoadmap/>
       </Row>
     </Container>
   );
