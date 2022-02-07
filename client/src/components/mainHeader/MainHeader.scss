@@ -29,7 +29,6 @@
       width: 200px;
     }
   }
-
   @include mobile {
     flex: 1;
     justify-content: flex-start !important;
@@ -37,6 +36,11 @@
   @include tablet {
     flex: 1;
     justify-content: flex-start !important;
+  }
+  @include desktop {
+    img {
+      width: 180px;
+    }
   }
 }
 
