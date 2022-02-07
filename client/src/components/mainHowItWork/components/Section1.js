@@ -5,20 +5,10 @@ export const Section1 = () => {
   return (
     <div className="main-how-part__1 d-flex flex-column justify-content-center align-items-center">
       <div className="part-1-header">
-        <div className="left">
-          <div className="item">
-            <img src={ArrowGif} alt="liberT-arrow"/>
-          </div>
-        </div>
         <div className="middle">
           <div className="content">The Liber T token truly is the future of solidarity, for those who wish to join
             and invest in their family’s future, through two separate entities, and their affiliates, that support
             the “WE ARE CHANGE” movement.
-          </div>
-        </div>
-        <div className="right">
-          <div className="item">
-            <img src={ArrowGif} alt="liberT-arrow"/>
           </div>
         </div>
       </div>
@@ -26,6 +16,9 @@ export const Section1 = () => {
       <div className="part-1-sections">
         <div className="section-item d-flex justify-content-start">
           <div className="section-item-container">
+            <div className="top-arrow top-left-arrow">
+              <img src={ArrowGif} alt="liberT" className="arrow-item"/>
+            </div>
             <div className="section-item-number">
               <div className="number-container d-flex justify-content-center align-items-center">
                 <div className="number">1</div>
@@ -46,6 +39,9 @@ export const Section1 = () => {
         
         <div className="section-item d-flex justify-content-end">
           <div className="section-item-container">
+            <div className="top-arrow top-right-arrow">
+              <img src={ArrowGif} alt="liberT" className="arrow-item"/>
+            </div>
             <div className="section-item-number">
               <div className="number-container d-flex justify-content-center align-items-center">
                 <div className="number">2</div>
@@ -80,9 +76,6 @@ export const Section1 = () => {
                 charters and covenants.
               </div>
             </div>
-            <div className="arrow-item">
-              <img className="left-arrow" src={ArrowGif} alt="liberT"/>
-            </div>
           </div>
         </div>
         
@@ -98,9 +91,6 @@ export const Section1 = () => {
                 news and information network.
               </div>
             </div>
-            <div className="arrow-item">
-              <img className="right-arrow" src={ArrowGif} alt="liberT"/>
-            </div>
           </div>
         </div>
       </div>
@@ -108,6 +98,9 @@ export const Section1 = () => {
       <div className="part-1-sections">
         <div className="section-item d-flex justify-content-center">
           <div className="section-item-container">
+            <div className="bottom-arrow bottom-left-arrow">
+              <img src={ArrowGif} alt="liberT" className="arrow-item"/>
+            </div>
             <div className="section-item-number">
               <div className="number-container d-flex justify-content-center align-items-center">
                 <div className="number">5</div>
@@ -117,6 +110,9 @@ export const Section1 = () => {
               <div className="content">We support the FREEDOM Movement / Rallies / “Live” Stream programming / Talk
                 for Freedom Chanel / Freedom Artists and speakers.
               </div>
+            </div>
+            <div className="bottom-arrow bottom-right-arrow">
+              <img src={ArrowGif} alt="liberT" className="arrow-item"/>
             </div>
           </div>
         </div>

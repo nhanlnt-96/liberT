@@ -5,11 +5,6 @@ export const Section2 = () => {
   return (
     <div className="main-how-part__1 d-flex flex-column justify-content-center align-items-center">
       <div className="part-1-header">
-        <div className="left">
-          <div className="item">
-            <img src={ArrowGif} alt="liberT-arrow"/>
-          </div>
-        </div>
         <div className="middle">
           <div className="content">The (EWS) will also partner with, create and / or promote Liber T token member
             sponsored FREEDOM and special events including international wellness retreats, that allow education and
@@ -19,16 +14,14 @@ export const Section2 = () => {
           <div className="content">The Liber T token membership, when purchased, benefits the holder in multiple ways:
           </div>
         </div>
-        <div className="right">
-          <div className="item">
-            <img src={ArrowGif} alt="liberT-arrow"/>
-          </div>
-        </div>
       </div>
       
       <div className="part-1-sections">
         <div className="section-item d-flex justify-content-start">
           <div className="section-item-container">
+            <div className="top-arrow top-left-arrow">
+              <img src={ArrowGif} alt="liberT" className="arrow-item"/>
+            </div>
             <div className="section-item-number">
               <div className="number-container d-flex justify-content-center align-items-center">
                 <div className="number">1</div>
@@ -48,6 +41,9 @@ export const Section2 = () => {
         
         <div className="section-item d-flex justify-content-end">
           <div className="section-item-container">
+            <div className="top-arrow top-right-arrow">
+              <img src={ArrowGif} alt="liberT" className="arrow-item"/>
+            </div>
             <div className="section-item-number">
               <div className="number-container d-flex justify-content-center align-items-center">
                 <div className="number">2</div>
@@ -79,9 +75,6 @@ export const Section2 = () => {
               <div className="content">Enjoy our LIBER T Hub PHONE APP “Free to Members”.
               </div>
             </div>
-            <div className="arrow-item arrow-item-left">
-              <img className="left-arrow" src={ArrowGif} alt="liberT"/>
-            </div>
           </div>
         </div>
         
@@ -98,9 +91,6 @@ export const Section2 = () => {
                 enjoy the sovereign rights and freedom our forefathers fought and worked for.
               </div>
             </div>
-            <div className="arrow-item arrow-item-right">
-              <img className="right-arrow" src={ArrowGif} alt="liberT"/>
-            </div>
           </div>
         </div>
       </div>
@@ -108,6 +98,9 @@ export const Section2 = () => {
       <div className="part-1-sections">
         <div className="section-item d-flex justify-content-center">
           <div className="section-item-container">
+            <div className="bottom-arrow bottom-left-arrow">
+              <img src={ArrowGif} alt="liberT" className="arrow-item"/>
+            </div>
             <div className="section-item-number">
               <div className="number-container d-flex justify-content-center align-items-center">
                 <div className="number">5</div>
@@ -122,6 +115,9 @@ export const Section2 = () => {
                 open forum chat discussions and polls on various T topics / the reality is it is, this is only the
                 beginning because we are the future … “WE ARE CHANGE”.
               </div>
+            </div>
+            <div className="bottom-arrow bottom-right-arrow">
+              <img src={ArrowGif} alt="liberT" className="arrow-item"/>
             </div>
           </div>
         </div>
