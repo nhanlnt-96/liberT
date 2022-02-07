@@ -1,5 +1,5 @@
 {
-  "name": "nft-project",
+  "name": "liber-t",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -33,7 +33,7 @@
     "web3-eth-contract": "^1.5.2",
     "yup": "^0.32.11"
   },
-  "author": "Jay Le",
+  "author": "LiberT",
   "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
