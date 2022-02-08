@@ -17,7 +17,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    imageName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     imageUrl: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    connectBtnName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    bgImageName: {
       type: DataTypes.STRING,
       allowNull: true,
     },
