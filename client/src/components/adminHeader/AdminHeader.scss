@@ -1,4 +1,14 @@
+@import "../../styles/rwd";
+
 .admin-header-container {
+  .navbar-brand {
+    width: 100px;
+
+    img {
+      width: 100%;
+    }
+  }
+
   .admin-header-toggle {
     border: none;
 
@@ -7,5 +17,15 @@
       box-shadow: none;
       border: none;
     }
+  }
+}
+
+.modal-container {
+  .input-field {
+    border: 1px solid #5c636a !important;
+  }
+
+  .submit-modal {
+    margin-left: 12px;
   }
 }

@@ -17,10 +17,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    avatarImgName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     avatarUrl: {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    isFirstLogin: {
+      defaultValue: Boolean(true),
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    }
   });
   return User;
 };

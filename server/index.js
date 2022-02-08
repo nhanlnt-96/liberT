@@ -13,14 +13,14 @@ app.get("/", (req, res) => {
   res.send("Welcome to our server");
 });
 
-// const bannerRouter = require("./routes/Banner");
-// app.use("/banner", bannerRouter);
-//
+const bannerRouter = require("./routes/Banner");
+app.use("/banner", bannerRouter);
+
 const userRouter = require("./routes/User");
 app.use("/user", userRouter);
 
 db.sequelize.sync().then(() => {
-  app.listen(process.env.PORT || 3001, () => {
+  app.listen((process.env.PORT || 3001), () => {
     console.log(`Server is running on port 3001`);
   });
 }).catch((error) => {

@@ -3,7 +3,7 @@ import {LOGIN_FAIL, LOGIN_START, LOGIN_SUCCESS} from "./actionTypes";
 const initialState = {
   isLoading: false,
   isLogged: false,
-  errorMsg: ""
+  errorMsg: "",
 };
 
 const authReducer = (state = initialState, action) => {
@@ -18,7 +18,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        isLogged: true
+        isLogged: true,
       };
     case LOGIN_FAIL:
       return {

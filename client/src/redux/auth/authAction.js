@@ -1,5 +1,6 @@
 import {LOGIN_FAIL, LOGIN_START, LOGIN_SUCCESS} from "./actionTypes";
-import api from "../../configs/axios";
+import api from "configs/axios";
+import {getUserAuth} from "redux/getAuth/getAuthAction";
 
 export const loginStart = () => {
   return {
@@ -29,7 +30,8 @@ export const login = (data, history) => {
     }).then((res) => {
       localStorage.setItem("accessToken", res.data.data.accessToken);
       dispatch(loginSuccess());
-      history.push("/admin");
+      dispatch(getUserAuth(res.data.data.accessToken));
+      history("/admin");
     }).catch(error => {
       dispatch(loginFail(error.response.data.error));
     });
