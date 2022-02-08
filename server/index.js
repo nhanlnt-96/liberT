@@ -13,9 +13,9 @@ app.get("/", (req, res) => {
   res.send("Welcome to our server");
 });
 
-const bannerRouter = require("./routes/Banner");
-app.use("/banner", bannerRouter);
-
+// const bannerRouter = require("./routes/Banner");
+// app.use("/banner", bannerRouter);
+//
 const userRouter = require("./routes/User");
 app.use("/user", userRouter);
 
