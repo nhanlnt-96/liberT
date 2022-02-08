@@ -14,7 +14,7 @@ const MainFaq = () => {
         <Row className="main-content-height main-faq-content">
           {
             faqData.map((val, index) => (
-              <div className="faq-item-container">
+              <div key={index} className="faq-item-container">
                 <div className="question d-flex justify-content-start">
                   <div className="question-container">
                     <div className="question-desc">{val.question}</div>

@@ -8,6 +8,12 @@
   min-height: 100vh;
 }
 
+.login-form-container {
+  @include mobile {
+    order: 2;
+  }
+}
+
 .login-form-container .login-form-box {
   width: 70%;
 
@@ -15,6 +21,14 @@
     font-weight: bold;
     font-size: 55px;
     margin-bottom: 24px;
+  }
+
+  @include mobile {
+    width: 100%;
+    .login-form-title .title {
+      text-align: center;
+      font-size: 35px;
+    }
   }
 }
 
@@ -54,19 +68,6 @@
     }
   }
 
-  .change-password-container {
-    margin-bottom: 12px;
-
-    .btn-change-pass {
-      text-align: right;
-      cursor: pointer;
-
-      &:hover {
-        color: rgb(31, 62, 220);
-      }
-    }
-  }
-
   .login-button {
     width: 100%;
     padding: 12px;
@@ -79,38 +80,12 @@
   }
 }
 
-.modal-container {
-  .input-field {
-    border: 1px solid #5c636a !important;
+.login-page-bg {
+  img {
+    width: 100%;
   }
 
-  .submit-modal, .close-modal {
-    border: none;
-    outline: none;
-    padding: 12px;
-    width: 100px;
-    border-radius: 5px;
-    color: #ffffff;
+  @include mobile {
+    order: 1;
   }
-
-  .close-modal {
-    background-color: #6c757d;
-
-    &:hover {
-      background-color: red;
-    }
-  }
-
-  .submit-modal {
-    margin-left: 12px;
-    background-color: rgb(31, 62, 220);
-
-    &:hover {
-      background-color: green;
-    }
-  }
-}
-
-.login-page-bg img {
-  width: 100%;
 }

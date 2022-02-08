@@ -29,9 +29,9 @@ router.patch("/update/:id", validateToken, async (req, res) => {
     title,
     subTitle,
     content,
+    connectBtnName,
     imageName,
     imageUrl,
-    connectBtnName,
     bgImageName,
     bgImageUrl
   } = req.body;
@@ -43,9 +43,9 @@ router.patch("/update/:id", validateToken, async (req, res) => {
         title,
         subTitle,
         content,
+        connectBtnName,
         imageName,
         imageUrl,
-        connectBtnName,
         bgImageName,
         bgImageUrl
       }, {

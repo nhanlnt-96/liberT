@@ -24,7 +24,7 @@ export const mainRoutes = [
 export const adminRoutes = {
   path: "/admin",
   module: <AdminPage/>,
-  isPrivate: false,
+  isPrivate: true,
   children: [
     {
       module: <AdminHomepage/>,
