@@ -5,8 +5,7 @@ import * as Yup from "yup";
 import {ErrorMessage, Form, Formik, Field} from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-
-import {login} from "../../redux/auth/authAction";
+import {login} from "redux/auth/authAction";
 
 import "./LoginPage.scss";
 
@@ -29,7 +28,7 @@ const LoginPage = () => {
   return (
     <Container fluid className="login-page">
       <Row className="login-page-container">
-        <Col className="login-form-container d-flex justify-content-center align-items-center">
+        <Col lg={6} md={7} sm={12} className="login-form-container d-flex justify-content-center align-items-center">
           <div className="login-form-box">
             <div className="login-form-title">
               <h2 className="title">Login to Admin page</h2>
@@ -63,7 +62,7 @@ const LoginPage = () => {
             </Formik>
           </div>
         </Col>
-        <Col className="login-page-bg d-flex justify-content-center align-items-center">
+        <Col lg={6} md={5} sm={12} className="login-page-bg d-flex justify-content-center align-items-center">
           <img src={BgLogin} alt="login-page"/>
         </Col>
       </Row>

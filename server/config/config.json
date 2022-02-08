@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "your-heroku-info",
-    "password": "your-heroku-info",
-    "database": "your-heroku-info",
-    "host": "your-heroku-info",
+    "username": "b724707c33ea12",
+    "password": "ff1e47a2",
+    "database": "heroku_60172e2a4cf92cf",
+    "host": "us-cdbr-east-05.cleardb.net",
     "dialect": "mysql"
   },
   "test": {
@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "your-heroku-info",
-    "password": "your-heroku-info",
-    "database": "your-heroku-info",
-    "host": "your-heroku-info",
+    "username": "b724707c33ea12",
+    "password": "ff1e47a2",
+    "database": "heroku_60172e2a4cf92cf",
+    "host": "us-cdbr-east-05.cleardb.net",
     "dialect": "mysql"
   }
 }

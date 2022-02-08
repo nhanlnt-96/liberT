@@ -1,5 +1,8 @@
 const express = require("express");
-const {body, validationResult} = require("express-validator");
+const {
+  body,
+  validationResult
+} = require("express-validator");
 const {Banner} = require("../models");
 const helper = require("../shared/helper/helper");
 const {validateToken} = require("../middleware/authentication");
@@ -22,12 +25,30 @@ router.post("/", validateToken, body("title").notEmpty().trim(), async (req, res
 });
 
 router.patch("/update/:id", validateToken, async (req, res) => {
-  const {title, subTitle, content, imageUrl, bgImageUrl} = req.body;
+  const {
+    title,
+    subTitle,
+    content,
+    connectBtnName,
+    imageName,
+    imageUrl,
+    bgImageName,
+    bgImageUrl
+  } = req.body;
   const contentId = req.params.id;
   const checkContentExist = await Banner.findByPk(contentId);
   try {
     if (checkContentExist) {
-      await Banner.update({title, subTitle, content, imageUrl, bgImageUrl}, {
+      await Banner.update({
+        title,
+        subTitle,
+        content,
+        connectBtnName,
+        imageName,
+        imageUrl,
+        bgImageName,
+        bgImageUrl
+      }, {
         where: {id: contentId},
         returning: true,
         plain: true,
