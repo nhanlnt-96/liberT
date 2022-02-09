@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Alert, Col, Container, Row} from "react-bootstrap";
 import BgLogin from "../../assets/imgs/bgLogin.svg";
 import * as Yup from "yup";
@@ -12,8 +12,16 @@ import "./LoginPage.scss";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLoading = useSelector((state) => state.auth.isLoading);
-  const errorMsg = useSelector((state) => state.auth.errorMsg);
+  const userAuth = useSelector((state) => state.auth);
+  const {
+    isLoading,
+    errorMsg,
+    isLogged
+  } = userAuth;
+  const token = localStorage.getItem("accessToken");
+  useEffect(() => {
+    if (isLogged || token) navigate("/admin");
+  }, [isLogged, token]);
   const initialValues = {
     username: "",
     password: ""

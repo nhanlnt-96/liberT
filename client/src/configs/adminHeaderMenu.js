@@ -8,9 +8,13 @@ export const adminHeaderMenu = [
     path: "banner"
   },
   {
-    label: "About",
-    path: "about"
+    label: "Investment Summary",
+    path: "investment"
   },
+  // {
+  //   label: "About",
+  //   path: "about"
+  // },
   {
     label: "Collection",
     path: "collection"
@@ -27,12 +31,12 @@ export const adminHeaderMenu = [
     label: "Team",
     path: "team"
   },
-  {
-    label: "Rarity",
-    path: "rarity"
-  },
-  {
-    label: "Contact",
-    path: "contact"
-  },
+  // {
+  //   label: "Rarity",
+  //   path: "rarity"
+  // },
+  // {
+  //   label: "Contact",
+  //   path: "contact"
+  // },
 ];

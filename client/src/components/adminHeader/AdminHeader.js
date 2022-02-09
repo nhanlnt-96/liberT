@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Container, Dropdown, Nav, Navbar} from "react-bootstrap";
 import {adminHeaderMenu} from "configs/adminHeaderMenu";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserAuth} from "redux/getAuth/getAuthAction";
 import {ChangePasswordModal, LogoutConfirmModal} from "components/adminHeader/components";
@@ -12,6 +12,7 @@ const AdminHeader = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.getAuth.userData);
   const isLogged = useSelector((state) => state.auth.isLogged);
+  const navigate = useNavigate();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
   useEffect(() => {
@@ -20,7 +21,7 @@ const AdminHeader = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container fluid className="admin-header-container">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand onClick={() => navigate("")}>
           <img src={userData.avatarUrl} alt={userData.fullName}/>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" className="admin-header-toggle"/>

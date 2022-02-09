@@ -4,7 +4,7 @@ import LoginPage from "../pages/login/LoginPage";
 import AdminHomepage from "pages/adminHomepage/AdminHomepage";
 import BannerEditor from "pages/bannerEditor/BannerEditor";
 import PageNotFound from "pages/pageNotFound/PageNotFound";
-import AboutEditor from "pages/aboutEditor/AboutEditor";
+import InvestmentEditor from "pages/investmentEditor/InvestmentEditor";
 
 export const mainRoutes = [
   {
@@ -31,11 +31,16 @@ export const adminRoutes = {
     },
     {
       path: "banner",
-      module: <BannerEditor/>
+      module: <BannerEditor/>,
+      isShow: true
     },
+    // {
+    //   path: "about",
+    //   module: ,
+    // },
     {
-      path: "about",
-      module: <AboutEditor/>
+      path: "investment",
+      module: <InvestmentEditor/>,
     }
   ]
 };
