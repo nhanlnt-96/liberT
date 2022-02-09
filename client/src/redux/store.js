@@ -4,12 +4,16 @@ import blockchainReducer from "./blockchain/blockchainReducer";
 import dataReducer from "./data/dataReducer";
 import authReducer from "./auth/authReducer";
 import getAuthReducer from "redux/getAuth/getAuthReducer";
+import bannerContentReducer from "redux/bannerContent/bannerContentReducer";
+import finishUpdateReducer from "redux/finishUpdate/finishUpdateReducer";
 
 const rootReducer = combineReducers({
   blockchain: blockchainReducer,
   data: dataReducer,
   auth: authReducer,
-  getAuth: getAuthReducer
+  getAuth: getAuthReducer,
+  bannerContent: bannerContentReducer,
+  finishUpdate: finishUpdateReducer
 });
 
 const middleware = [thunk];

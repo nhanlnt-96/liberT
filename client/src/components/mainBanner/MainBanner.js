@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Col, Container, Row} from "react-bootstrap";
 import MainHeader from "components/mainHeader/MainHeader";
 import RightImg from "assets/imgs/banner/rightImg.png";
@@ -10,34 +10,43 @@ import {fetchData} from "redux/data/dataActions";
 
 import "./MainBanner.scss";
 import ToastNoti from "components/mainBanner/component/ToastNoti";
+import {getBannerContent} from "redux/bannerContent/bannerContentAction";
+import LoadingComp from "components/loadingComp/LoadingComp";
 
 const MainBanner = () => {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
+  const bannerContent = useSelector((state) => state.bannerContent);
   const getData = () => {
     if (blockchain.account !== "" && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
     }
   };
-  return (
-    <Container fluid className="main-banner">
+  useEffect(() => {
+    dispatch(getBannerContent());
+  }, []);
+  return bannerContent.isLoading ? (
+    <LoadingComp/>
+  ) : (
+    <Container fluid className="main-banner" style={{backgroundImage: bannerContent.bannerData?.bgImageUrl}}>
       <MainHeader/>
       <Row className="main-banner-content">
         <Col lg={7} md={12} className="main-banner-left">
           <Container
             className="d-flex flex-column justify-content-center align-items-center main-banner-left__container">
-            <div className="fw-bold text-center text-center main-banner-title">we are change</div>
-            <div className="fw-bold text-center main-banner-subtitle">LIBER-T Token is all about freedom</div>
-            <div className="text-center main-banner-description">Scroll down to learn more about our foundation,
-              affiliates, and network.
-            </div>
+            <div className="fw-bold text-center text-center main-banner-title"
+                 dangerouslySetInnerHTML={{__html: bannerContent.bannerData?.title}}/>
+            <div className="fw-bold text-center main-banner-subtitle"
+                 dangerouslySetInnerHTML={{__html: bannerContent.bannerData?.subTitle}}/>
+            <div className="text-center main-banner-description"
+                 dangerouslySetInnerHTML={{__html: bannerContent.bannerData?.content}}/>
             <div className="main-banner-button">
               {
                 !blockchain.account && <button onClick={(e) => {
                   e.preventDefault();
                   dispatch(connect());
                   getData();
-                }} className="button-item">Learn more</button>
+                }} className="button-item" dangerouslySetInnerHTML={{__html: bannerContent.bannerData?.connectBtnName}}/>
               }
             </div>
           </Container>
@@ -47,7 +56,7 @@ const MainBanner = () => {
             blockchain.account ? (
               <MintBoxComp/>
             ) : (
-              <img src={RightImg} alt="liberT-img"/>
+              <img src={bannerContent.bannerData?.imageUrl} alt="liberT-img"/>
             )
           }
         </Col>

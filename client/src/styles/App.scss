@@ -12,6 +12,7 @@
     height: 100%;
     padding-right: 0 !important;
     padding-left: 0 !important;
+    overflow: hidden;
   }
 
   @include mobile {
@@ -22,12 +23,6 @@
 .editor-container {
   .editor-top-container {
     margin: 24px 0;
-
-    .editor-item {
-      &:not(:last-child) {
-        flex: 2;
-      }
-    }
   }
 
   .editor-update-button {
