@@ -1,23 +1,25 @@
 const express = require("express");
+const {validateToken} = require("../middleware/authentication");
 const {
   body,
   validationResult
 } = require("express-validator");
-const {Banner} = require("../models");
 const {
   ApiError,
   ApiSuccess
 } = require("../shared/helper/helper");
-const {validateToken} = require("../middleware/authentication");
+const {
+  About
+} = require("../models");
 
 const router = express.Router();
 
-router.post("/", validateToken, body("title").notEmpty().trim(), async (req, res) => {
+router.post("/", validateToken, body("content").notEmpty().trim(), async (req, res) => {
   const errors = validationResult(req);
   const post = req.body;
   try {
     if (errors.isEmpty()) {
-      await Banner.create(post);
+      await About.create(post);
       ApiSuccess(201, post, res);
     } else {
       ApiError(400, errors.array(), res);
@@ -29,24 +31,18 @@ router.post("/", validateToken, body("title").notEmpty().trim(), async (req, res
 
 router.patch("/update/:id", validateToken, async (req, res) => {
   const {
-    title,
-    subTitle,
     content,
-    connectBtnName,
     imageName,
     imageUrl,
     bgImageName,
     bgImageUrl
   } = req.body;
   const contentId = req.params.id;
-  const checkContentExist = await Banner.findByPk(contentId);
+  const checkContentExist = await About.findByPk(contentId);
   try {
     if (checkContentExist) {
-      await Banner.update({
-        title,
-        subTitle,
+      await About.update({
         content,
-        connectBtnName,
         imageName,
         imageUrl,
         bgImageName,
@@ -67,8 +63,8 @@ router.patch("/update/:id", validateToken, async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const bannerContent = await Banner.findAll();
-  ApiSuccess(200, bannerContent, res);
+  const aboutContent = await About.findAll();
+  ApiSuccess(200, aboutContent, res);
 });
 
 module.exports = router;
