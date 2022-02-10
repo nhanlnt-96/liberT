@@ -14,7 +14,7 @@ router.post("/", validateToken, async (req, res) => {
   const post = req.body;
   try {
     await post.map(async (val) => {
-      if (val.question || val.answer) {
+      if (val.question && val.answer) {
         await FAQ.create(val);
       } else {
         ApiError(400, "FAQ's content can not empty.", res);
@@ -28,16 +28,16 @@ router.post("/", validateToken, async (req, res) => {
 
 router.patch("/update/:id", validateToken, async (req, res) => {
   const {
-    title,
-    description
+    question,
+    answer
   } = req.body;
   const contentId = req.params.id;
   const checkContentExist = await FAQ.findByPk(contentId);
   try {
     if (checkContentExist) {
       await FAQ.update({
-        title,
-        description
+        question,
+        answer
       }, {
         where: {id: contentId},
         returning: true,
@@ -54,8 +54,8 @@ router.patch("/update/:id", validateToken, async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const aboutContent = await FAQ.findAll();
-  ApiSuccess(200, aboutContent, res);
+  const faqContent = await FAQ.findAll();
+  ApiSuccess(200, faqContent, res);
 });
 
 module.exports = router;
