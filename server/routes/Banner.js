@@ -4,7 +4,10 @@ const {
   validationResult
 } = require("express-validator");
 const {Banner} = require("../models");
-const helper = require("../shared/helper/helper");
+const {
+  ApiError,
+  ApiSuccess
+} = require("../shared/helper/helper");
 const {validateToken} = require("../middleware/authentication");
 
 const router = express.Router();
@@ -15,12 +18,12 @@ router.post("/", validateToken, body("title").notEmpty().trim(), async (req, res
   try {
     if (errors.isEmpty()) {
       await Banner.create(post);
-      helper.ApiSuccess(201, post, res);
+      ApiSuccess(201, post, res);
     } else {
-      helper.ApiError(400, errors.array(), res);
+      ApiError(400, errors.array(), res);
     }
   } catch (error) {
-    helper.ApiError(400, error, res);
+    ApiError(400, error, res);
   }
 });
 
@@ -53,19 +56,19 @@ router.patch("/update/:id", validateToken, async (req, res) => {
         returning: true,
         plain: true,
       }).then((result) => {
-        helper.ApiSuccess(201, result, res);
+        ApiSuccess(201, result, res);
       });
     } else {
-      helper.ApiError(400, "Content not found", res);
+      ApiError(400, "Content not found", res);
     }
   } catch (error) {
-    helper.ApiError(400, error, res);
+    ApiError(400, error, res);
   }
 });
 
 router.get("/", async (req, res) => {
   const bannerContent = await Banner.findAll();
-  helper.ApiSuccess(200, bannerContent, res);
+  ApiSuccess(200, bannerContent, res);
 });
 
 module.exports = router;

@@ -12,6 +12,10 @@ export const mainHeaderMenu = [
     path: "#how-it-works"
   },
   {
+    label: "collections",
+    path: "collections"
+  },
+  {
     label: "roadmap",
     path: "#roadmap"
   },

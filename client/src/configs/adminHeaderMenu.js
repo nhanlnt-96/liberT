@@ -8,16 +8,24 @@ export const adminHeaderMenu = [
     path: "banner"
   },
   {
-    label: "About",
-    path: "about"
+    label: "Investment Summary",
+    path: "investment"
   },
   {
-    label: "Collection",
-    path: "collection"
+    label: "How It Works",
+    path: "how-it-works"
   },
   {
     label: "Roadmap",
     path: "roadmap"
+  },
+  // {
+  //   label: "About",
+  //   path: "about"
+  // },
+  {
+    label: "Collections",
+    path: "collections"
   },
   {
     label: "FAQ",
@@ -27,12 +35,12 @@ export const adminHeaderMenu = [
     label: "Team",
     path: "team"
   },
-  {
-    label: "Rarity",
-    path: "rarity"
-  },
-  {
-    label: "Contact",
-    path: "contact"
-  },
+  // {
+  //   label: "Rarity",
+  //   path: "rarity"
+  // },
+  // {
+  //   label: "Contact",
+  //   path: "contact"
+  // },
 ];
