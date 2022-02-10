@@ -8,6 +8,7 @@ import MainTeam from "components/mainTeam/MainTeam";
 import MainFaq from "components/mainFaq/MainFaq";
 
 import "./Homepage.scss";
+import MainCollection from "components/mainCollection/MainCollection";
 
 const Homepage = () => {
   return (
@@ -20,6 +21,9 @@ const Homepage = () => {
       </Row>
       <Row id="how-it-works">
         <MainHowItWorks/>
+      </Row>
+      <Row id="collections">
+        <MainCollection/>
       </Row>
       <Row id="roadmap">
         <MainRoadmap/>

@@ -5,9 +5,9 @@ import ScrollDownComp from "components/ScrollDownComp/ScrollDownComp";
 import LeftSideImg from "assets/shapes/investmentLeftSide.png";
 import {useDispatch, useSelector} from "react-redux";
 import {getAboutContent} from "redux/aboutContent/aboutContentAction";
+import LoadingComp from "components/loadingComp/LoadingComp";
 
 import "./MainInvestment.scss";
-import LoadingComp from "components/loadingComp/LoadingComp";
 
 const MainInvestment = () => {
   const dispatch = useDispatch();
