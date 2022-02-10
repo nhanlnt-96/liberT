@@ -34,6 +34,9 @@ app.use("/faq", faqRouter);
 const teamRouter = require("./routes/Team");
 app.use("/team", teamRouter);
 
+const collectionsRouter = require("./routes/Collections");
+app.use("/collections", collectionsRouter);
+
 db.sequelize.sync().then(() => {
   app.listen((process.env.PORT || 3001), () => {
     console.log(`Server is running on port 3001`);
