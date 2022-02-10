@@ -1,15 +1,19 @@
 module.exports = (sequelize, DataTypes) => {
-  const About = sequelize.define("About", {
+  const Team = sequelize.define("Team", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    content: {
+    name: {
       type: DataTypes.TEXT,
       unique: false,
       allowNull: true,
-      
+    },
+    position: {
+      type: DataTypes.TEXT,
+      unique: false,
+      allowNull: true,
     },
     imageName: {
       type: DataTypes.STRING,
@@ -20,15 +24,6 @@ module.exports = (sequelize, DataTypes) => {
       unique: false,
       allowNull: true,
     },
-    bgImageName: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    bgImageUrl: {
-      type: DataTypes.TEXT,
-      unique: false,
-      allowNull: true,
-    },
   });
-  return About;
+  return Team;
 };

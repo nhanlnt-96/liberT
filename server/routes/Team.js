@@ -5,8 +5,7 @@ const {
   ApiSuccess
 } = require("../shared/helper/helper");
 const {
-  HowWork,
-  Roadmap
+  Team
 } = require("../models");
 
 const router = express.Router();
@@ -16,17 +15,15 @@ router.post("/", validateToken, async (req, res) => {
   try {
     await post.map(async (val) => {
       const {
-        description,
-        detail1,
-        detail2,
-        detail3,
-        detail4,
-        detail5
+        name,
+        position,
+        imageName,
+        imageUrl
       } = val;
-      if (description || detail1 || detail2 || detail3 || detail4 || detail5) {
-        await Roadmap.create(val);
+      if (name || position || imageName || imageUrl) {
+        await Team.create(val);
       } else {
-        ApiError(400, "Roadmap's content can not empty.", res);
+        ApiError(400, "Team's content can not empty.", res);
       }
     });
     ApiSuccess(201, post, res);
@@ -37,24 +34,20 @@ router.post("/", validateToken, async (req, res) => {
 
 router.patch("/update/:id", validateToken, async (req, res) => {
   const {
-    description,
-    detail1,
-    detail2,
-    detail3,
-    detail4,
-    detail5
+    name,
+    position,
+    imageName,
+    imageUrl
   } = req.body;
   const contentId = req.params.id;
-  const checkContentExist = await HowWork.findByPk(contentId);
+  const checkContentExist = await Team.findByPk(contentId);
   try {
     if (checkContentExist) {
-      await HowWork.update({
-        description,
-        detail1,
-        detail2,
-        detail3,
-        detail4,
-        detail5
+      await Team.update({
+        name,
+        position,
+        imageName,
+        imageUrl
       }, {
         where: {id: contentId},
         returning: true,
@@ -71,8 +64,8 @@ router.patch("/update/:id", validateToken, async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const aboutContent = await HowWork.findAll();
-  ApiSuccess(200, aboutContent, res);
+  const teamContent = await Team.findAll();
+  ApiSuccess(200, teamContent, res);
 });
 
 module.exports = router;

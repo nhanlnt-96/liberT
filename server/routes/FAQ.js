@@ -5,8 +5,7 @@ const {
   ApiSuccess
 } = require("../shared/helper/helper");
 const {
-  HowWork,
-  Roadmap
+  FAQ
 } = require("../models");
 
 const router = express.Router();
@@ -15,18 +14,10 @@ router.post("/", validateToken, async (req, res) => {
   const post = req.body;
   try {
     await post.map(async (val) => {
-      const {
-        description,
-        detail1,
-        detail2,
-        detail3,
-        detail4,
-        detail5
-      } = val;
-      if (description || detail1 || detail2 || detail3 || detail4 || detail5) {
-        await Roadmap.create(val);
+      if (val.question || val.answer) {
+        await FAQ.create(val);
       } else {
-        ApiError(400, "Roadmap's content can not empty.", res);
+        ApiError(400, "FAQ's content can not empty.", res);
       }
     });
     ApiSuccess(201, post, res);
@@ -37,24 +28,16 @@ router.post("/", validateToken, async (req, res) => {
 
 router.patch("/update/:id", validateToken, async (req, res) => {
   const {
-    description,
-    detail1,
-    detail2,
-    detail3,
-    detail4,
-    detail5
+    title,
+    description
   } = req.body;
   const contentId = req.params.id;
-  const checkContentExist = await HowWork.findByPk(contentId);
+  const checkContentExist = await FAQ.findByPk(contentId);
   try {
     if (checkContentExist) {
-      await HowWork.update({
-        description,
-        detail1,
-        detail2,
-        detail3,
-        detail4,
-        detail5
+      await FAQ.update({
+        title,
+        description
       }, {
         where: {id: contentId},
         returning: true,
@@ -71,7 +54,7 @@ router.patch("/update/:id", validateToken, async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const aboutContent = await HowWork.findAll();
+  const aboutContent = await FAQ.findAll();
   ApiSuccess(200, aboutContent, res);
 });
 

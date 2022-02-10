@@ -26,7 +26,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
     imageUrl: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
+      unique: false,
       allowNull: true,
     },
     bgImageName: {
@@ -34,7 +35,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
     bgImageUrl: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
+      unique: false,
       allowNull: true,
     },
   });

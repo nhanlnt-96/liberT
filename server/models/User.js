@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
     avatarUrl: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
+      unique: false,
       allowNull: true,
     },
     isFirstLogin: {
