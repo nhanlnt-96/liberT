@@ -5,9 +5,9 @@ import {finishUpdate} from "redux/finishUpdate/finishUpdateAction";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import EditorTitle from "components/editorTitle/EditorTitle";
 import EditorComp from "components/editor/EditorComp";
-import UploadImg from "components/uploadImg/UploadImg";
 import {getTeamContent} from "redux/teamContent/teamContentAction";
 import MainTeam from "components/mainTeam/MainTeam";
+import {UploadImg} from "components/uploadImg";
 
 const TeamEditor = () => {
   const dispatch = useDispatch();
@@ -73,7 +73,7 @@ const TeamEditor = () => {
         </Col>
         <Col lg={6} md={6} sm={12} className="editor-item">
           <EditorTitle title={"Image Upload"}/>
-          <UploadImg imgFolder={"team"} imgInfo={imgInfo} setImgInfo={setImgInfo} isMultiImg={false}
+          <UploadImg imgFolder={"team"} imgInfo={imgInfo} setImgInfo={setImgInfo}
                      currentImgName={teamContent.teamData[memberSelected]
                        ?.imageName}
                      currentImgUrl={teamContent.teamData[memberSelected]

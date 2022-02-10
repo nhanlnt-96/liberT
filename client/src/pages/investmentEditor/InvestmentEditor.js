@@ -2,12 +2,12 @@ import React, {useState} from "react";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import EditorTitle from "components/editorTitle/EditorTitle";
 import EditorComp from "components/editor/EditorComp";
-import UploadImg from "components/uploadImg/UploadImg";
 import MainInvestment from "components/mainInvestment/MainInvestment";
 import api from "configs/axios";
 import {finishUpdate} from "redux/finishUpdate/finishUpdateAction";
 import {getBannerContent} from "redux/bannerContent/bannerContentAction";
 import {useDispatch, useSelector} from "react-redux";
+import {UploadImg} from "components/uploadImg";
 
 const InvestmentEditor = () => {
   const dispatch = useDispatch();
@@ -65,13 +65,13 @@ const InvestmentEditor = () => {
       <Row className="editor-top-container">
         <Col lg={6} md={6} sm={12} className="editor-item">
           <EditorTitle title={"Image Upload"}/>
-          <UploadImg imgFolder={"investment"} imgInfo={imgInfo} setImgInfo={setImgInfo} isMultiImg={false}
+          <UploadImg imgFolder={"investment"} imgInfo={imgInfo} setImgInfo={setImgInfo}
                      currentImgName={imageName}
                      currentImgUrl={imageUrl}/>
         </Col>
         <Col lg={6} md={6} sm={12} className="editor-item">
           <EditorTitle title={"Background Image Upload"}/>
-          <UploadImg imgFolder={"investment"} imgInfo={imgBgInfo} setImgInfo={setImgBgInfo} isMultiImg={false}
+          <UploadImg imgFolder={"investment"} imgInfo={imgBgInfo} setImgInfo={setImgBgInfo}
                      currentImgName={bgImageName}
                      currentImgUrl={bgImageUrl}/>
         </Col>

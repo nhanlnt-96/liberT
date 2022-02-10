@@ -24,8 +24,8 @@ export const adminHeaderMenu = [
   //   path: "about"
   // },
   {
-    label: "Collection",
-    path: "collection"
+    label: "Collections",
+    path: "collections"
   },
   {
     label: "FAQ",

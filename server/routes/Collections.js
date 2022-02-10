@@ -29,25 +29,13 @@ router.post("/", validateToken, body("imageName").notEmpty().trim(), body("image
   }
 });
 
-router.patch("/update/:id", validateToken, async (req, res) => {
-  const {
-    imageName,
-    imageUrl
-  } = req.body;
+router.delete("/:id", validateToken, async (req, res) => {
   const contentId = req.params.id;
   const checkContentExist = await Collections.findByPk(contentId);
   try {
     if (checkContentExist) {
-      await Collections.update({
-        imageName,
-        imageUrl
-      }, {
-        where: {id: contentId},
-        returning: true,
-        plain: true,
-      }).then((result) => {
-        ApiSuccess(201, result, res);
-      });
+      await Collections.destroy({where: {id: contentId}});
+      ApiSuccess(200, "Deleted", res);
     } else {
       ApiError(400, "Content not found", res);
     }

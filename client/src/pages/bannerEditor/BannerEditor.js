@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import EditorComp from "components/editor/EditorComp";
-import UploadImg from "components/uploadImg/UploadImg";
 import EditorTitle from "components/editorTitle/EditorTitle";
 import MainBanner from "components/mainBanner/MainBanner";
 import {useDispatch, useSelector} from "react-redux";
 import api from "configs/axios";
 import {getBannerContent} from "redux/bannerContent/bannerContentAction";
 import {finishUpdate} from "redux/finishUpdate/finishUpdateAction";
+import {UploadImg} from "components/uploadImg";
 
 const BannerEditor = () => {
   const dispatch = useDispatch();
@@ -91,13 +91,13 @@ const BannerEditor = () => {
       <Row className="editor-top-container">
         <Col lg={6} md={6} sm={12} className="editor-item">
           <EditorTitle title={"Image Upload"}/>
-          <UploadImg imgFolder={"banner"} imgInfo={imgInfo} setImgInfo={setImgInfo} isMultiImg={false}
+          <UploadImg imgFolder={"banner"} imgInfo={imgInfo} setImgInfo={setImgInfo}
                      currentImgName={imageName}
                      currentImgUrl={imageUrl}/>
         </Col>
         <Col lg={6} md={6} sm={12} className="editor-item">
           <EditorTitle title={"Background Image Upload"}/>
-          <UploadImg imgFolder={"banner"} imgInfo={imgBgInfo} setImgInfo={setImgBgInfo} isMultiImg={false}
+          <UploadImg imgFolder={"banner"} imgInfo={imgBgInfo} setImgInfo={setImgBgInfo}
                      currentImgName={bgImageName}
                      currentImgUrl={bgImageUrl}/>
         </Col>

@@ -8,21 +8,20 @@ import {generateFileName} from "helpers/generateFileName";
 
 import "./UploadImg.scss";
 
-const ButtonUpload = styled.button`
+export const ButtonUpload = styled.button`
   border: none;
   outline: none;
   padding: 12px;
   border-radius: 5px;
 `;
 
-const UploadImg = ({
-                     imgFolder,
-                     imgInfo,
-                     setImgInfo,
-                     currentImgName,
-                     currentImgUrl,
-                     isMultiImg
-                   }) => {
+export const UploadImg = ({
+                            imgFolder,
+                            imgInfo,
+                            setImgInfo,
+                            currentImgName,
+                            currentImgUrl
+                          }) => {
   const hiddenFileInput = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const onUploadBtnClick = (e) => {
@@ -67,8 +66,7 @@ const UploadImg = ({
       {
         !imgInfo.imgUrl && (
           <div className="upload-btn">
-            <input ref={hiddenFileInput} type="file" style={{display: "none"}} onChange={onUploadHandler}
-                   multiple={isMultiImg}/>
+            <input ref={hiddenFileInput} type="file" style={{display: "none"}} onChange={onUploadHandler}/>
             <ButtonUpload onClick={onUploadBtnClick}>Upload image</ButtonUpload>
           </div>
         )
@@ -99,5 +97,3 @@ const UploadImg = ({
     </Container>
   );
 };
-
-export default UploadImg;
