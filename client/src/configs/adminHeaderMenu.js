@@ -15,6 +15,10 @@ export const adminHeaderMenu = [
     label: "How It Works",
     path: "how-it-works"
   },
+  {
+    label: "Roadmap",
+    path: "roadmap"
+  },
   // {
   //   label: "About",
   //   path: "about"
@@ -22,10 +26,6 @@ export const adminHeaderMenu = [
   {
     label: "Collection",
     path: "collection"
-  },
-  {
-    label: "Roadmap",
-    path: "roadmap"
   },
   {
     label: "FAQ",

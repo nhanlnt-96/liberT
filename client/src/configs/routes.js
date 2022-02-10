@@ -6,6 +6,7 @@ import BannerEditor from "pages/bannerEditor/BannerEditor";
 import PageNotFound from "pages/pageNotFound/PageNotFound";
 import InvestmentEditor from "pages/investmentEditor/InvestmentEditor";
 import HowWorkEditor from "pages/howWorkEditor/HowWorkEditor";
+import RoadmapEditor from "pages/roadmapEditor/RoadmapEditor";
 
 export const mainRoutes = [
   {
@@ -46,6 +47,10 @@ export const adminRoutes = {
     {
       path: "how-it-works",
       module: <HowWorkEditor/>
+    },
+    {
+      path: "roadmap",
+      module: <RoadmapEditor/>
     }
   ]
 };

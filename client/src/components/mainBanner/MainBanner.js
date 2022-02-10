@@ -56,7 +56,9 @@ const MainBanner = () => {
             blockchain.account ? (
               <MintBoxComp/>
             ) : (
-              <img src={bannerContent.bannerData?.imageUrl} alt="liberT-img"/>
+              bannerContent.bannerData?.imageUrl && (
+                <img src={bannerContent.bannerData?.imageUrl} alt="liberT-img"/>
+              )
             )
           }
         </Col>

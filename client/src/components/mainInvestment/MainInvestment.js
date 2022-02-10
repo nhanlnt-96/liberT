@@ -3,7 +3,6 @@ import {Col, Container, Row} from "react-bootstrap";
 import PrimaryTitle from "components/primaryTitle/PrimaryTitle";
 import ScrollDownComp from "components/ScrollDownComp/ScrollDownComp";
 import LeftSideImg from "assets/shapes/investmentLeftSide.png";
-import RightSideImg from "assets/imgs/investment/rightSideImg.webp";
 import {useDispatch, useSelector} from "react-redux";
 import {getAboutContent} from "redux/aboutContent/aboutContentAction";
 
@@ -34,7 +33,11 @@ const MainInvestment = () => {
                  dangerouslySetInnerHTML={{__html: aboutContent.aboutData?.content}}/>
           </Col>
           <Col lg={5} md={5} className="main-investment-right d-flex justify-content-center align-items-center">
-            <img src={aboutContent.aboutData?.imageUrl} alt="liberT-investment"/>
+            {
+              aboutContent.aboutData?.imageUrl && (
+                <img src={aboutContent.aboutData?.imageUrl} alt="liberT-investment"/>
+              )
+            }
           </Col>
         </Row>
       </Container>
