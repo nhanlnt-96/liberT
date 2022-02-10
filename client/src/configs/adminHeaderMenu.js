@@ -11,6 +11,10 @@ export const adminHeaderMenu = [
     label: "Investment Summary",
     path: "investment"
   },
+  {
+    label: "How It Works",
+    path: "how-it-works"
+  },
   // {
   //   label: "About",
   //   path: "about"

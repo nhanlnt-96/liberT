@@ -5,6 +5,7 @@ import AdminHomepage from "pages/adminHomepage/AdminHomepage";
 import BannerEditor from "pages/bannerEditor/BannerEditor";
 import PageNotFound from "pages/pageNotFound/PageNotFound";
 import InvestmentEditor from "pages/investmentEditor/InvestmentEditor";
+import HowWorkEditor from "pages/howWorkEditor/HowWorkEditor";
 
 export const mainRoutes = [
   {
@@ -41,6 +42,10 @@ export const adminRoutes = {
     {
       path: "investment",
       module: <InvestmentEditor/>,
+    },
+    {
+      path: "how-it-works",
+      module: <HowWorkEditor/>
     }
   ]
 };

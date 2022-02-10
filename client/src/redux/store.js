@@ -7,6 +7,7 @@ import getAuthReducer from "redux/getAuth/getAuthReducer";
 import bannerContentReducer from "redux/bannerContent/bannerContentReducer";
 import finishUpdateReducer from "redux/finishUpdate/finishUpdateReducer";
 import aboutContentReducer from "redux/aboutContent/aboutContentReducer";
+import howWorkContentReducer from "redux/howWorkContent/howWorkContentReducer";
 
 const rootReducer = combineReducers({
   blockchain: blockchainReducer,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   getAuth: getAuthReducer,
   bannerContent: bannerContentReducer,
   finishUpdate: finishUpdateReducer,
-  aboutContent: aboutContentReducer
+  aboutContent: aboutContentReducer,
+  howWorkContent: howWorkContentReducer
 });
 
 const middleware = [thunk];
