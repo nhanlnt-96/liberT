@@ -4,9 +4,9 @@ import PrimaryTitle from "components/primaryTitle/PrimaryTitle";
 import ScrollDownComp from "components/ScrollDownComp/ScrollDownComp";
 import {useDispatch, useSelector} from "react-redux";
 import {getFaqContent} from "redux/faqContent/faqContentAction";
+import LoadingComp from "components/loadingComp/LoadingComp";
 
 import "./MainFaq.scss";
-import LoadingComp from "components/loadingComp/LoadingComp";
 
 const MainFaq = () => {
   const dispatch = useDispatch();

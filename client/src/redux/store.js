@@ -10,6 +10,7 @@ import aboutContentReducer from "redux/aboutContent/aboutContentReducer";
 import howWorkContentReducer from "redux/howWorkContent/howWorkContentReducer";
 import roadmapContentReducer from "redux/roadmapContent/roadmapContentReducer";
 import faqContentReducer from "redux/faqContent/faqContentReducer";
+import teamContentReducer from "redux/teamContent/teamContentReducer";
 
 const rootReducer = combineReducers({
   blockchain: blockchainReducer,
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   aboutContent: aboutContentReducer,
   howWorkContent: howWorkContentReducer,
   roadmapContent: roadmapContentReducer,
-  faqContent: faqContentReducer
+  faqContent: faqContentReducer,
+  teamContent: teamContentReducer
 });
 
 const middleware = [thunk];

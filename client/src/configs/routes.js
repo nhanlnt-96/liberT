@@ -8,6 +8,7 @@ import InvestmentEditor from "pages/investmentEditor/InvestmentEditor";
 import HowWorkEditor from "pages/howWorkEditor/HowWorkEditor";
 import RoadmapEditor from "pages/roadmapEditor/RoadmapEditor";
 import FaqEditor from "pages/faqEditor/FAQEditor";
+import TeamEditor from "pages/teamEditor/TeamEditor";
 
 export const mainRoutes = [
   {
@@ -56,6 +57,10 @@ export const adminRoutes = {
     {
       path: "faq",
       module: <FaqEditor/>
+    },
+    {
+      path: "team",
+      module: <TeamEditor/>
     }
   ]
 };
