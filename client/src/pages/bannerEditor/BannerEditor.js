@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import EditorComp from "components/editor/EditorComp";
 import EditorTitle from "components/editorTitle/EditorTitle";
@@ -8,6 +8,7 @@ import api from "configs/axios";
 import {getBannerContent} from "redux/bannerContent/bannerContentAction";
 import {finishUpdate} from "redux/finishUpdate/finishUpdateAction";
 import {UploadImg} from "components/uploadImg";
+import LoadingComp from "components/loadingComp/LoadingComp";
 
 const BannerEditor = () => {
   const dispatch = useDispatch();
@@ -71,21 +72,45 @@ const BannerEditor = () => {
       <Row className="editor-top-container">
         <Col lg={6} md={6} sm={12} className="editor-item">
           <EditorTitle title={"Banner's Title"}/>
-          <EditorComp newValue={setBannerTitleInput}/>
+          {
+            bannerContent.isLoading ? (
+              <LoadingComp/>
+            ) : (
+              <EditorComp newValue={setBannerTitleInput} content={bannerContent.bannerData?.title}/>
+            )
+          }
         </Col>
         <Col lg={6} md={6} sm={12} className="editor-item">
           <EditorTitle title={"Banner's Subtitle"}/>
-          <EditorComp newValue={setBannerSubTitleInput}/>
+          {
+            bannerContent.isLoading ? (
+              <LoadingComp/>
+            ) : (
+              <EditorComp newValue={setBannerSubTitleInput} content={bannerContent.bannerData?.subTitle}/>
+            )
+          }
         </Col>
       </Row>
       <Row className="editor-top-container">
         <Col lg={6} md={6} sm={12} className="editor-item">
           <EditorTitle title={"Banner's Content"}/>
-          <EditorComp newValue={setBannerContentInput}/>
+          {
+            bannerContent.isLoading ? (
+              <LoadingComp/>
+            ) : (
+              <EditorComp newValue={setBannerContentInput} content={bannerContent.bannerData?.content}/>
+            )
+          }
         </Col>
         <Col lg={6} md={6} sm={12} className="editor-item">
           <EditorTitle title={"Banner's Button Name"}/>
-          <EditorComp newValue={setBannerBtnNameInput}/>
+          {
+            bannerContent.isLoading ? (
+              <LoadingComp/>
+            ) : (
+              <EditorComp newValue={setBannerBtnNameInput} content={bannerContent.bannerData?.connectBtnName}/>
+            )
+          }
         </Col>
       </Row>
       <Row className="editor-top-container">
