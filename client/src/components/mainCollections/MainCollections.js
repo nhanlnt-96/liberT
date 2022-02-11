@@ -22,7 +22,8 @@ const MainCollections = () => {
         <PrimaryTitle title={"collection"}/>
       </div>
       <div className="slideshow-comp-slider">
-        <div className="slideshow-comp-track">
+        <div className="slideshow-comp-track"
+             style={{width: `calc(250px * ${collectionsContent.collectionsData.length * 2})`}}>
           {
             collectionsContent.collectionsData.map((val, index) => (
               <div key={index} className="slideshow-comp-slide">

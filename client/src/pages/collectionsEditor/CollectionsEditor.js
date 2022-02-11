@@ -12,14 +12,15 @@ import {UploadMultiImg} from "components/uploadImg";
 const CollectionsEditor = () => {
   const dispatch = useDispatch();
   const collectionsContent = useSelector((state) => state.collectionsContent);
+  const uploadedImgsData = useSelector((state) => state.uploadedImgsData);
   const [isLoading, setIsLoading] = useState(false);
   const [imgInfo, setImgInfo] = useState([]);
   const onUpdateBtnClick = async () => {
     setIsLoading(true);
-    for (let i = 0; i < imgInfo.length; i++) {
+    for (let i = 0; i < uploadedImgsData.imgsUploadedData.length; i++) {
       await api.post("collections", {
-        imageName: imgInfo[i].imgName,
-        imageUrl: imgInfo[i].imgUrl
+        imageName: uploadedImgsData.imgsUploadedData[i].imgName,
+        imageUrl: uploadedImgsData.imgsUploadedData[i].imgUrl
       });
     }
     setIsLoading(false);
@@ -39,7 +40,7 @@ const CollectionsEditor = () => {
       <Row className="editor-update-button">
         <div className="update-button-container d-flex justify-content-center align-items-center">
           <Button className="update-btn" onClick={onUpdateBtnClick}
-                  disabled={isLoading}>{isLoading ? "Updating" : "Update"}</Button>
+                  disabled={isLoading || uploadedImgsData.imgsUploadedData.length <= 0}>{isLoading ? "Updating" : "Update"}</Button>
         </div>
       </Row>
       <Row>

@@ -12,6 +12,7 @@ import roadmapContentReducer from "redux/roadmapContent/roadmapContentReducer";
 import faqContentReducer from "redux/faqContent/faqContentReducer";
 import teamContentReducer from "redux/teamContent/teamContentReducer";
 import collectionsContentReducer from "redux/collectionsContent/collectionsContentReducer";
+import uploadMultiImgReducer from "redux/uploadMultiImg/uploadMultiImgReducer";
 
 const rootReducer = combineReducers({
   blockchain: blockchainReducer,
@@ -25,7 +26,8 @@ const rootReducer = combineReducers({
   roadmapContent: roadmapContentReducer,
   faqContent: faqContentReducer,
   teamContent: teamContentReducer,
-  collectionsContent: collectionsContentReducer
+  collectionsContent: collectionsContentReducer,
+  uploadedImgsData: uploadMultiImgReducer
 });
 
 const middleware = [thunk];
