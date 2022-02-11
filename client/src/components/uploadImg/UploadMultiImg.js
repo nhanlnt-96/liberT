@@ -2,61 +2,31 @@ import React, {useRef, useState} from "react";
 import {AiOutlineDelete} from "react-icons/all";
 import {Container, Spinner} from "react-bootstrap";
 import {ButtonUpload} from "components/uploadImg/UploadImg";
-import {generateFileName} from "helpers/generateFileName";
-import firebase from "firebase/compat";
 import {deleteObject, getStorage, ref} from "firebase/storage";
 import api from "configs/axios";
+import {useDispatch, useSelector} from "react-redux";
+import {getCollectionsContent} from "redux/collectionsContent/collectionsContentAction";
+import {removeImgsUploaded, removeImgsWillUpload, uploadImgs} from "redux/uploadMultiImg/uploadMultiActions";
 
 export const UploadMultiImg = ({
                                  imgFolder,
-                                 imgData,
-                                 setImgData,
                                  currentImg
                                }) => {
+  const dispatch = useDispatch();
+  const uploadedImgsData = useSelector((state) => state.uploadedImgsData);
   const hiddenFilesInput = useRef(null);
-  const [isLoading, setIsLoading] = useState(false);
   const onUploadBtnClick = (e) => {
     hiddenFilesInput.current.click();
   };
   const onUploadHandler = (e) => {
-    setIsLoading(true);
-    const imgToStore = [];
     const fileUploaded = e.target.files;
-    for (let i = 0; i < fileUploaded.length; i++) {
-      const fileName = generateFileName(fileUploaded[i].name);
-      const storageRef = firebase.storage().ref(`${imgFolder}/${fileName}`).put(fileUploaded[i]);
-      storageRef.on("state_changed", (snapshot) => {
-      }, (error) => {
-        console.log(error);
-        setIsLoading(false);
-      }, async () => {
-        await storageRef.snapshot.ref.getDownloadURL().then((url) => {
-          imgToStore.push({
-            imgName: fileName,
-            imgUrl: url
-          });
-        });
-      });
-    }
-    setImgData(imgToStore);
-    setIsLoading(false);
-    console.log("done");
+    dispatch(uploadImgs(imgFolder, fileUploaded));
   };
-  const onRemoveImgUpload = (imgFolder, imgName, imageId) => {
-    setIsLoading(true);
-    const storage = getStorage();
-    const desertRef = ref(storage, `${imgFolder}/${imgName}`);
-    deleteObject(desertRef).then(async () => {
-      if (imageId) {
-        await api.delete(`collections/${imageId}`).then(() => {
-          setIsLoading(false);
-        });
-      }
-      setIsLoading(false);
-    }).catch((error) => {
-      setIsLoading(false);
-      console.error(error);
-    });
+  const onRemoveImgWillUpload = (imgFolder, imgName, imgUrl) => {
+    dispatch(removeImgsWillUpload(imgFolder, uploadedImgsData.imgsUploadedData, imgName, imgUrl));
+  };
+  const onRemoveImgUploaded = (imgFolder, imgName, imageId) => {
+    dispatch(removeImgsUploaded(imgFolder, imgName, imageId, uploadedImgsData.imgsUploadedData));
   };
   return (
     <Container fluid
@@ -67,37 +37,41 @@ export const UploadMultiImg = ({
         <ButtonUpload onClick={onUploadBtnClick}>Upload images</ButtonUpload>
       </div>
       {
-        imgData.length > 0 ? (
+        uploadedImgsData.imgsUploadedData.length > 0 ? (
           <div className="multi-img-preview d-flex justify-content-center align-items-center">
-            {
-              imgData.map((val, index) => (
-                <div key={index} className="img-preview-container">
-                  <button title="Remove image" className="remove-img"
-                          onClick={() => onRemoveImgUpload(imgFolder, val.imgName)}>
-                    <AiOutlineDelete/>
-                  </button>
-                  <img src={val.imgUrl} alt="liberT-admin"/>
-                </div>
-              ))
-            }
+            <div className="multi-img-track d-flex">
+              {
+                uploadedImgsData.imgsUploadedData.map((val, index) => (
+                  <div key={index} className="img-preview-container">
+                    <button title="Remove image" className="remove-img"
+                            onClick={() => onRemoveImgWillUpload(imgFolder, val.imgName, val.imgUrl)}>
+                      <AiOutlineDelete/>
+                    </button>
+                    <img src={val.imgUrl} alt="liberT-admin"/>
+                  </div>
+                ))
+              }
+            </div>
           </div>
-        ) : isLoading ? (
+        ) : uploadedImgsData.isLoading ? (
           <div style={{marginTop: 24}}>
             <Spinner animation="grow" variant="primary"/>
           </div>
         ) : currentImg.length > 0 && (
           <div className="multi-img-preview d-flex justify-content-center align-items-center overflow-scroll">
-            {
-              currentImg.map((val, index) => (
-                <div key={index} className="img-preview-container">
-                  <button title="Remove image" className="remove-img"
-                          onClick={() => onRemoveImgUpload(imgFolder, val.imageName, val.id)}>
-                    <AiOutlineDelete/>
-                  </button>
-                  <img src={val.imageUrl} alt="liberT-admin"/>
-                </div>
-              ))
-            }
+            <div className="multi-img-track d-flex">
+              {
+                currentImg.map((val, index) => (
+                  <div key={index} className="img-preview-container">
+                    <button title="Remove image" className="remove-img"
+                            onClick={() => onRemoveImgUploaded(imgFolder, val.imageName, val.id)}>
+                      <AiOutlineDelete/>
+                    </button>
+                    <img src={val.imageUrl} alt="liberT-admin"/>
+                  </div>
+                ))
+              }
+            </div>
           </div>
         )
       }
