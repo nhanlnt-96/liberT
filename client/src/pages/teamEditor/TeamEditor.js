@@ -8,6 +8,7 @@ import EditorComp from "components/editor/EditorComp";
 import {getTeamContent} from "redux/teamContent/teamContentAction";
 import MainTeam from "components/mainTeam/MainTeam";
 import {UploadImg} from "components/uploadImg";
+import LoadingComp from "components/loadingComp/LoadingComp";
 
 const TeamEditor = () => {
   const dispatch = useDispatch();
@@ -47,45 +48,55 @@ const TeamEditor = () => {
   };
   return (
     <Container fluid className="editor-container">
-      <Row className="editor-top-container">
-        <Col className="editor-item d-flex flex-column align-items-center">
-          <EditorTitle title={"Select member to edit"}/>
-          <Form.Group onChange={onSelectMemberHandler} className="how-work-select" style={{width: "100%"}}>
-            <Form.Select>
-              <option disabled selected>Select part</option>
-              {
-                teamContent.teamData.map((val, index) => (
-                  <option key={index} value={index} dangerouslySetInnerHTML={{__html: `Member name: ${val.name}`}}/>
-                ))
-              }
-            </Form.Select>
-          </Form.Group>
-        </Col>
-        <Col lg={6} md={6} sm={12} className="editor-item">
-          <EditorTitle title={"Member's Name"}/>
-          <EditorComp newValue={setTeamMemberName}/>
-        </Col>
-      </Row>
-      <Row className="editor-top-container">
-        <Col lg={6} md={6} sm={12} className="editor-item">
-          <EditorTitle title={"Member's position"}/>
-          <EditorComp newValue={setTeamMemberPosition}/>
-        </Col>
-        <Col lg={6} md={6} sm={12} className="editor-item">
-          <EditorTitle title={"Image Upload"}/>
-          <UploadImg imgFolder={"team"} imgInfo={imgInfo} setImgInfo={setImgInfo}
-                     currentImgName={teamContent.teamData[memberSelected]
-                       ?.imageName}
-                     currentImgUrl={teamContent.teamData[memberSelected]
-                       ?.imageUrl}/>
-        </Col>
-      </Row>
-      <Row className="editor-update-button">
-        <div className="update-button-container d-flex justify-content-center align-items-center">
-          <Button className="update-btn" onClick={onUpdateBtnClick}
-                  disabled={isLoading}>{isLoading ? "Updating" : "Update"}</Button>
-        </div>
-      </Row>
+      {
+        teamContent.teamData.length <= 0 ? (
+          <LoadingComp/>
+        ) : (
+          <>
+            <Row className="editor-top-container">
+              <Col className="editor-item d-flex flex-column align-items-center">
+                <EditorTitle title={"Select member to edit"}/>
+                <Form.Group onChange={onSelectMemberHandler} className="how-work-select" style={{width: "100%"}}>
+                  <Form.Select>
+                    <option disabled selected>Select part</option>
+                    {
+                      teamContent.teamData.map((val, index) => (
+                        <option key={index} value={index}
+                                dangerouslySetInnerHTML={{__html: `Member name: ${val.name}`}}/>
+                      ))
+                    }
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+              <Col lg={6} md={6} sm={12} className="editor-item">
+                <EditorTitle title={"Member's Name"}/>
+                <EditorComp newValue={setTeamMemberName} content={teamContent.teamData[memberSelected].name || ""}/>
+              </Col>
+            </Row>
+            <Row className="editor-top-container">
+              <Col lg={6} md={6} sm={12} className="editor-item">
+                <EditorTitle title={"Member's position"}/>
+                <EditorComp newValue={setTeamMemberPosition}
+                            content={teamContent.teamData[memberSelected].position || ""}/>
+              </Col>
+              <Col lg={6} md={6} sm={12} className="editor-item">
+                <EditorTitle title={"Image Upload"}/>
+                <UploadImg imgFolder={"team"} imgInfo={imgInfo} setImgInfo={setImgInfo}
+                           currentImgName={teamContent.teamData[memberSelected]
+                             ?.imageName}
+                           currentImgUrl={teamContent.teamData[memberSelected]
+                             ?.imageUrl}/>
+              </Col>
+            </Row>
+            <Row className="editor-update-button">
+              <div className="update-button-container d-flex justify-content-center align-items-center">
+                <Button className="update-btn" onClick={onUpdateBtnClick}
+                        disabled={isLoading}>{isLoading ? "Updating" : "Update"}</Button>
+              </div>
+            </Row>
+          </>
+        )
+      }
       <Row>
         <EditorTitle title={"Preview"}/>
         <MainTeam/>

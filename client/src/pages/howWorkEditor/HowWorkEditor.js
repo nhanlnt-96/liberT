@@ -9,6 +9,7 @@ import {finishUpdate} from "redux/finishUpdate/finishUpdateAction";
 import {getHowWorkContent} from "redux/howWorkContent/howWorkContentAction";
 
 import "./HowWorkEditor.scss";
+import LoadingComp from "components/loadingComp/LoadingComp";
 
 const HowWorkEditor = () => {
   const dispatch = useDispatch();
@@ -21,8 +22,9 @@ const HowWorkEditor = () => {
   const [detail3, setDetail3] = useState("");
   const [detail4, setDetail4] = useState("");
   const [detail5, setDetail5] = useState("");
-  const onSelectPartHandler = (e) => {
-    setPartEditSelected(e.target.value);
+  const onSelectPartHandler = (index) => {
+    setPartEditSelected(index);
+    setDescription(howWorkContent.howWorkData[index].description);
   };
   const onUpdateBtnClick = async () => {
     setIsLoading(true);
@@ -46,57 +48,73 @@ const HowWorkEditor = () => {
       dispatch(getHowWorkContent());
     }
   };
-  
+  console.log(description)
   return (
     <Container fluid className="editor-container">
-      <Row className="editor-top-container">
-        <Col className="editor-item d-flex flex-column justify-content-center align-items-center">
-          <EditorTitle title={"Select part to edit"}/>
-          <Form.Group onChange={onSelectPartHandler} className="how-work-select">
-            <Form.Select>
-              <option disabled selected>Select part</option>
-              <option value="0">Part 1</option>
-              <option value="1">Part 2</option>
-            </Form.Select>
-          </Form.Group>
-        </Col>
-      </Row>
-      <Row className="editor-top-container">
-        <Col className="editor-item">
-          <EditorTitle title={"How It Works's Description"}/>
-          <EditorComp newValue={setDescription}/>
-        </Col>
-        <Col className="editor-item">
-          <EditorTitle title={"How It Work's Detail 1"}/>
-          <EditorComp newValue={setDetail1}/>
-        </Col>
-      </Row>
-      <Row className="editor-top-container">
-        <Col className="editor-item">
-          <EditorTitle title={"How It Work's Detail 2"}/>
-          <EditorComp newValue={setDetail2}/>
-        </Col>
-        <Col className="editor-item">
-          <EditorTitle title={"How It Work's Detail 3"}/>
-          <EditorComp newValue={setDetail3}/>
-        </Col>
-      </Row>
-      <Row className="editor-top-container">
-        <Col className="editor-item">
-          <EditorTitle title={"How It Work's Detail 4"}/>
-          <EditorComp newValue={setDetail4}/>
-        </Col>
-        <Col className="editor-item">
-          <EditorTitle title={"How It Work's Detail 5"}/>
-          <EditorComp newValue={setDetail5}/>
-        </Col>
-      </Row>
-      <Row className="editor-update-button">
-        <div className="update-button-container d-flex justify-content-center align-items-center">
-          <Button className="update-btn" onClick={onUpdateBtnClick}
-                  disabled={isLoading || !partEditSelected}>{isLoading ? "Updating" : "Update"}</Button>
-        </div>
-      </Row>
+      {
+        howWorkContent.howWorkData.l <= 0 ? (
+          <LoadingComp/>
+        ) : (
+          <>
+            <Row className="editor-top-container">
+              <Col className="editor-item d-flex flex-column justify-content-center align-items-center">
+                <EditorTitle title={"Select part to edit"}/>
+                {/*<Form.Group onChange={onSelectPartHandler} className="how-work-select">*/}
+                {/*  <Form.Select>*/}
+                {/*    <option disabled selected>Select part</option>*/}
+                {/*    <option value="0">Part 1</option>*/}
+                {/*    <option value="1">Part 2</option>*/}
+                {/*  </Form.Select>*/}
+                {/*</Form.Group>*/}
+                <button onClick={() => onSelectPartHandler(0)}>Part 1</button>
+                <button onClick={() => onSelectPartHandler(1)}>Part 2</button>
+              </Col>
+            </Row>
+            <Row className="editor-top-container">
+              <Col className="editor-item">
+                <EditorTitle title={"How It Works's Description"}/>
+                <EditorComp newValue={setDescription}
+                            content={description}/>
+              </Col>
+              <Col className="editor-item">
+                <EditorTitle title={"How It Work's Detail 1"}/>
+                <EditorComp newValue={setDetail1}
+                            content={howWorkContent.howWorkData[partEditSelected]?.detail1 || ""}/>
+              </Col>
+            </Row>
+            <Row className="editor-top-container">
+              <Col className="editor-item">
+                <EditorTitle title={"How It Work's Detail 2"}/>
+                <EditorComp newValue={setDetail2}
+                            content={howWorkContent.howWorkData[partEditSelected]?.detail2 || ""}/>
+              </Col>
+              <Col className="editor-item">
+                <EditorTitle title={"How It Work's Detail 3"}/>
+                <EditorComp newValue={setDetail3}
+                            content={howWorkContent.howWorkData[partEditSelected]?.detail3 || ""}/>
+              </Col>
+            </Row>
+            <Row className="editor-top-container">
+              <Col className="editor-item">
+                <EditorTitle title={"How It Work's Detail 4"}/>
+                <EditorComp newValue={setDetail4}
+                            content={howWorkContent.howWorkData[partEditSelected]?.detail4 || ""}/>
+              </Col>
+              <Col className="editor-item">
+                <EditorTitle title={"How It Work's Detail 5"}/>
+                <EditorComp newValue={setDetail5}
+                            content={howWorkContent.howWorkData[partEditSelected]?.detail5 || ""}/>
+              </Col>
+            </Row>
+            <Row className="editor-update-button">
+              <div className="update-button-container d-flex justify-content-center align-items-center">
+                <Button className="update-btn" onClick={onUpdateBtnClick}
+                        disabled={isLoading || !partEditSelected}>{isLoading ? "Updating" : "Update"}</Button>
+              </div>
+            </Row>
+          </>
+        )
+      }
       <Row>
         <EditorTitle title={"Preview"}/>
         <MainHowItWorks/>

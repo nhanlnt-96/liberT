@@ -9,6 +9,7 @@ import {finishUpdate} from "redux/finishUpdate/finishUpdateAction";
 import {getRoadmapContent} from "redux/roadmapContent/roadmapContentAction";
 import MainFaq from "components/mainFaq/MainFaq";
 import {getFaqContent} from "redux/faqContent/faqContentAction";
+import LoadingComp from "components/loadingComp/LoadingComp";
 
 const FaqEditor = () => {
   const dispatch = useDispatch();
@@ -36,37 +37,45 @@ const FaqEditor = () => {
   };
   return (
     <Container fluid className="editor-container">
-      <Row className="editor-top-container">
-        <Col className="editor-item d-flex flex-column justify-content-center align-items-center">
-          <EditorTitle title={"Select FAQ to edit"}/>
-          <Form.Group onChange={onSelectPhaseHandler} className="how-work-select">
-            <Form.Select>
-              <option disabled selected>Select part</option>
-              {
-                faqContent.faqData.map((val, index) => (
-                  <option key={index} value={index}>Question {index + 1}</option>
-                ))
-              }
-            </Form.Select>
-          </Form.Group>
-        </Col>
-      </Row>
-      <Row className="editor-top-container">
-        <Col className="editor-item">
-          <EditorTitle title={"FAQ's Question"}/>
-          <EditorComp newValue={setFaqQuestion}/>
-        </Col>
-        <Col className="editor-item">
-          <EditorTitle title={"FAQ's Answer"}/>
-          <EditorComp newValue={setFaqAnswer}/>
-        </Col>
-      </Row>
-      <Row className="editor-update-button">
-        <div className="update-button-container d-flex justify-content-center align-items-center">
-          <Button className="update-btn" onClick={onUpdateBtnClick}
-                  disabled={isLoading || !faqSelected}>{isLoading ? "Updating" : "Update"}</Button>
-        </div>
-      </Row>
+      {
+        faqContent.faqData.length <= 0 ? (
+          <LoadingComp/>
+        ) : (
+          <>
+            <Row className="editor-top-container">
+              <Col className="editor-item d-flex flex-column justify-content-center align-items-center">
+                <EditorTitle title={"Select FAQ to edit"}/>
+                <Form.Group onChange={onSelectPhaseHandler} className="how-work-select">
+                  <Form.Select>
+                    <option disabled selected>Select part</option>
+                    {
+                      faqContent.faqData.map((val, index) => (
+                        <option key={index} value={index}>Question {index + 1}</option>
+                      ))
+                    }
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row className="editor-top-container">
+              <Col className="editor-item">
+                <EditorTitle title={"FAQ's Question"}/>
+                <EditorComp newValue={setFaqQuestion} content={faqContent.faqData?.question || ""}/>
+              </Col>
+              <Col className="editor-item">
+                <EditorTitle title={"FAQ's Answer"}/>
+                <EditorComp newValue={setFaqAnswer} content={faqContent.faqData?.answer || ""}/>
+              </Col>
+            </Row>
+            <Row className="editor-update-button">
+              <div className="update-button-container d-flex justify-content-center align-items-center">
+                <Button className="update-btn" onClick={onUpdateBtnClick}
+                        disabled={isLoading || !faqSelected}>{isLoading ? "Updating" : "Update"}</Button>
+              </div>
+            </Row>
+          </>
+        )
+      }
       <Row>
         <EditorTitle title={"Preview"}/>
         <MainFaq/>
