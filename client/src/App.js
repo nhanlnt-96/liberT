@@ -1,12 +1,12 @@
 import React from "react";
-import LayoutComp from "./components/layout/LayoutComp";
+import Introducing from "components/introducing/Introducing";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/App.scss";
 
 function App() {
   return (
-    <LayoutComp/>
+    <Introducing/>
   );
 }
 
