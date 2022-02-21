@@ -1,0 +1,80 @@
+@import "../../styles/rwd";
+
+.nft-high-demand-comp {
+  min-height: 100vh;
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  &__container {
+    display: grid;
+    grid-template-columns: .5fr 1fr;
+    grid-gap: 12px;
+  }
+
+  @include mobile {
+    &__container {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      grid-template-columns: none;
+      grid-template-rows: 300px 1fr;
+    }
+  }
+  @include tablet {
+    &__container {
+      grid-template-columns: none;
+      grid-template-rows: 400px 1fr;
+    }
+  }
+}
+
+.nft-high-demand-comp__container .left-side {
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.nft-high-demand-comp__container .right-side {
+  padding: 12px;
+
+  .top-content {
+    .desc {
+      font-size: 20px;
+      text-align: justify;
+      line-height: 25px;
+    }
+  }
+
+  .bottom-content {
+    background-color: rgb(240, 197, 62);
+    margin-top: 24px;
+
+    .content-item {
+      padding: 12px;
+
+      .question-container .question, .answer-container .answer {
+        color: #ffffff;
+      }
+
+      .question-container .question {
+        font-weight: 600;
+        font-size: 30px;
+      }
+
+      .answer-container .answer {
+        font-size: 20px;
+        text-align: justify;
+        margin-top: 12px;
+        line-height: 25px;
+      }
+    }
+  }
+
+  @include mobile {
+    padding: unset;
+  }
+}

@@ -35,9 +35,10 @@
     left: 50%;
     bottom: 10%;
     transform: translateX(-50%);
-    min-height: 300px;
+    height: fit-content;
     padding: 20px;
-    background-color: rgb(241, 241, 241);
+    //background-color: rgb(241, 241, 241);
+    background-color: #ffffff;
   }
 
   @include mobile {
@@ -79,7 +80,16 @@
       padding-right: 0 !important;
     }
     &-container {
-      bottom: 25%;
+      top: 50vh;
+    }
+  }
+  @include wide-desktop {
+    &-top {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    &-container {
+      top: 40vh;
     }
   }
 }
