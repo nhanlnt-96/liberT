@@ -1,6 +1,7 @@
 import React from "react";
 import {Container, Row} from "react-bootstrap";
 import TopImg from "../../assets/bg.jpg";
+import Logo from "../../assets/logo.webp";
 import {FaQuoteRight} from "react-icons/all";
 
 import "./Introducing.scss";
@@ -8,6 +9,9 @@ import "./Introducing.scss";
 const Introducing = () => {
   return (
     <Container fluid className="introducing-comp">
+      <div className="logo-container">
+        <img src={Logo} alt="liberT-logo"/>
+      </div>
       <Row className="introducing-comp-top">
         <img src={TopImg} alt=""/>
       </Row>

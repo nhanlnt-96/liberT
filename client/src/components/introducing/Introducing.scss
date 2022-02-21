@@ -4,6 +4,18 @@
   min-height: 100vh;
   position: relative;
 
+  .logo-container {
+    width: 150px;
+    height: fit-content;
+    position: absolute;
+    left: 12px;
+    top: 12px;
+
+    img {
+      width: 100%;
+    }
+  }
+
   &-top {
     height: 60vh;
   }
@@ -29,13 +41,26 @@
   }
 
   @include mobile {
+    padding-bottom: 12px;
+    padding-top: calc(12px + 30.5px);
+    background: url("../../assets/bg.jpg") no-repeat center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .logo-container {
+      left: 50%;
+      transform: translateX(-50%);
+    }
     &-top {
-      height: 100vh;
+      display: none !important;
     }
     &-container {
-      top: 50%;
+      position: relative;
+      top: unset;
+      left: unset;
       bottom: unset;
-      transform: translate(-50%, -50%);
+      transform: none;
       background-color: rgba(241, 241, 241, .9);
     }
   }
