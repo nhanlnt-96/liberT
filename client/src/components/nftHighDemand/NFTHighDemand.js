@@ -8,16 +8,16 @@ const NftHighDemand = () => {
   return (
     <Container fluid className="nft-high-demand-comp d-flex justify-content-center align-items-center">
       <Container fluid className="nft-high-demand-comp__container">
-        <div className="left-side">
+        <div data-aos="zoom-in" className="left-side">
           <img src={NFTImg} alt="liberT"/>
         </div>
         <div className="right-side d-flex flex-column justify-content-center align-items-center">
-          <div className="top-content">
+          <div data-aos="zoom-in" className="top-content">
             <p className="desc">NFTs are built on the same kind of infrastructure – blockchain – that cryptocurrencies
               are. Because they use blockchain, the transfer of an interest in NFTs is recorded on the blockchain,
               putting ownership on a permanent record, making it impossible (or at least very hard) to falsify.</p>
           </div>
-          <div className="bottom-content">
+          <div data-aos="zoom-in" className="bottom-content">
             <div className="content-item">
               <div className="question-container">
                 <p className="question">But why are NFTs in such high demand?</p>
