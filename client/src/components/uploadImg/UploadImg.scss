@@ -25,6 +25,14 @@
       object-fit: cover;
     }
   }
+
+  .toast-container {
+    position: fixed !important;
+
+    .toast {
+      background-color: #ffffff;
+    }
+  }
 }
 
 .multi-img-preview {
