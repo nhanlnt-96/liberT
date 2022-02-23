@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import EditorComp from "components/editor/EditorComp";
 import EditorTitle from "components/editorTitle/EditorTitle";
@@ -69,70 +69,54 @@ const BannerEditor = () => {
   };
   return (
     <Container fluid className="editor-container">
-      <Row className="editor-top-container">
-        <Col lg={6} md={6} sm={12} className="editor-item">
-          <EditorTitle title={"Banner's Title"}/>
-          {
-            bannerContent.isLoading ? (
-              <LoadingComp/>
-            ) : (
-              <EditorComp newValue={setBannerTitleInput} content={bannerContent.bannerData?.title}/>
-            )
-          }
-        </Col>
-        <Col lg={6} md={6} sm={12} className="editor-item">
-          <EditorTitle title={"Banner's Subtitle"}/>
-          {
-            bannerContent.isLoading ? (
-              <LoadingComp/>
-            ) : (
-              <EditorComp newValue={setBannerSubTitleInput} content={bannerContent.bannerData?.subTitle}/>
-            )
-          }
-        </Col>
-      </Row>
-      <Row className="editor-top-container">
-        <Col lg={6} md={6} sm={12} className="editor-item">
-          <EditorTitle title={"Banner's Content"}/>
-          {
-            bannerContent.isLoading ? (
-              <LoadingComp/>
-            ) : (
-              <EditorComp newValue={setBannerContentInput} content={bannerContent.bannerData?.content}/>
-            )
-          }
-        </Col>
-        <Col lg={6} md={6} sm={12} className="editor-item">
-          <EditorTitle title={"Banner's Button Name"}/>
-          {
-            bannerContent.isLoading ? (
-              <LoadingComp/>
-            ) : (
-              <EditorComp newValue={setBannerBtnNameInput} content={bannerContent.bannerData?.connectBtnName}/>
-            )
-          }
-        </Col>
-      </Row>
-      <Row className="editor-top-container">
-        <Col lg={6} md={6} sm={12} className="editor-item">
-          <EditorTitle title={"Image Upload"}/>
-          <UploadImg imgFolder={"banner"} imgInfo={imgInfo} setImgInfo={setImgInfo}
-                     currentImgName={imageName}
-                     currentImgUrl={imageUrl}/>
-        </Col>
-        <Col lg={6} md={6} sm={12} className="editor-item">
-          <EditorTitle title={"Background Image Upload"}/>
-          <UploadImg imgFolder={"banner"} imgInfo={imgBgInfo} setImgInfo={setImgBgInfo}
-                     currentImgName={bgImageName}
-                     currentImgUrl={bgImageUrl}/>
-        </Col>
-      </Row>
-      <Row className="editor-update-button">
-        <div className="update-button-container d-flex justify-content-center align-items-center">
-          <Button className="update-btn" onClick={onUpdateBtnClick}
-                  disabled={isLoading}>{isLoading ? "Updating" : "Update"}</Button>
-        </div>
-      </Row>
+      {
+        bannerContent.bannerData.length <= 0 ? (
+          <LoadingComp/>
+        ) : (
+          <>
+            <Row className="editor-top-container">
+              <Col lg={6} md={6} sm={12} className="editor-item">
+                <EditorTitle title={"Banner's Title"}/>
+                <EditorComp newValue={setBannerTitleInput} content={bannerContent.bannerData?.title}/>
+              </Col>
+              <Col lg={6} md={6} sm={12} className="editor-item">
+                <EditorTitle title={"Banner's Subtitle"}/>
+                <EditorComp newValue={setBannerSubTitleInput} content={bannerContent.bannerData?.subTitle}/>
+              </Col>
+            </Row>
+            <Row className="editor-top-container">
+              <Col lg={6} md={6} sm={12} className="editor-item">
+                <EditorTitle title={"Banner's Content"}/>
+                <EditorComp newValue={setBannerContentInput} content={bannerContent.bannerData?.content}/>
+              </Col>
+              <Col lg={6} md={6} sm={12} className="editor-item">
+                <EditorTitle title={"Banner's Button Name"}/>
+                <EditorComp newValue={setBannerBtnNameInput} content={bannerContent.bannerData?.connectBtnName}/>
+              </Col>
+            </Row>
+            <Row className="editor-top-container">
+              <Col lg={6} md={6} sm={12} className="editor-item">
+                <EditorTitle title={"Image Upload"}/>
+                <UploadImg imgFolder={"banner"} imgInfo={imgInfo} setImgInfo={setImgInfo}
+                           currentImgName={imageName}
+                           currentImgUrl={imageUrl}/>
+              </Col>
+              <Col lg={6} md={6} sm={12} className="editor-item">
+                <EditorTitle title={"Background Image Upload"}/>
+                <UploadImg imgFolder={"banner"} imgInfo={imgBgInfo} setImgInfo={setImgBgInfo}
+                           currentImgName={bgImageName}
+                           currentImgUrl={bgImageUrl}/>
+              </Col>
+            </Row>
+            <Row className="editor-update-button">
+              <div className="update-button-container d-flex justify-content-center align-items-center">
+                <Button className="update-btn" onClick={onUpdateBtnClick}
+                        disabled={isLoading}>{isLoading ? "Updating" : "Update"}</Button>
+              </div>
+            </Row>
+          </>
+        )
+      }
       <Row>
         <EditorTitle title={"Preview"}/>
         <MainBanner/>
