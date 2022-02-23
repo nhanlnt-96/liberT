@@ -27,6 +27,7 @@ const CollectionsEditor = () => {
     setImgInfo([]);
     dispatch(getCollectionsContent());
   };
+  console.log(imgInfo)
   return (
     <Container fluid className="editor-container">
       <Row className="editor-top-container">
@@ -39,7 +40,7 @@ const CollectionsEditor = () => {
       <Row className="editor-update-button">
         <div className="update-button-container d-flex justify-content-center align-items-center">
           <Button className="update-btn" onClick={onUpdateBtnClick}
-                  disabled={isLoading || uploadedImgsData.imgsUploadedData.length <= 0 || imgInfo.length <= 0}>{isLoading ? "Updating" : "Update"}</Button>
+                  disabled={isLoading || uploadedImgsData.imgsUploadedData.length <= 0}>{isLoading ? "Updating" : "Update"}</Button>
         </div>
       </Row>
       <Row>
