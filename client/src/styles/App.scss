@@ -21,6 +21,26 @@
 }
 
 .editor-container {
+  .editor-item .select-part-button-item {
+    border: none;
+    outline: none;
+    padding: 12px;
+    color: #ffffff;
+    transition: .2s linear;
+
+    &:not(:first-child) {
+      margin-left: 12px;
+    }
+
+    &:hover {
+      background-color: #1e3799 !important;
+    }
+  }
+
+  .select-part-button-item-active {
+    background-color: #1e3799 !important;
+  }
+
   .editor-comp-edit {
     padding: 12px;
   }

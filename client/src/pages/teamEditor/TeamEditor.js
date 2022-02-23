@@ -13,7 +13,7 @@ import LoadingComp from "components/loadingComp/LoadingComp";
 const TeamEditor = () => {
   const dispatch = useDispatch();
   const teamContent = useSelector((state) => state.teamContent);
-  const [memberSelected, setMemberSelected] = useState("");
+  const [memberSelected, setMemberSelected] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [teamMemberName, setTeamMemberName] = useState("");
   const [teamMemberPosition, setTeamMemberPosition] = useState("");
@@ -21,8 +21,8 @@ const TeamEditor = () => {
     imgName: "",
     imgUrl: ""
   });
-  const onSelectMemberHandler = (e) => {
-    setMemberSelected(e.target.value);
+  const onSelectMemberHandler = (index) => {
+    setMemberSelected(index);
   };
   const onUpdateBtnClick = async () => {
     setIsLoading(true);
@@ -55,29 +55,27 @@ const TeamEditor = () => {
           <>
             <Row className="editor-top-container">
               <Col className="editor-item d-flex flex-column align-items-center">
-                <EditorTitle title={"Select member to edit"}/>
-                <Form.Group onChange={onSelectMemberHandler} className="how-work-select" style={{width: "100%"}}>
-                  <Form.Select>
-                    <option disabled selected>Select part</option>
-                    {
-                      teamContent.teamData.map((val, index) => (
-                        <option key={index} value={index}
-                                dangerouslySetInnerHTML={{__html: `Member name: ${val.name}`}}/>
-                      ))
-                    }
-                  </Form.Select>
-                </Form.Group>
+                <EditorTitle title={(memberSelected === null) ? "Select member to edit" : `Editing member ${memberSelected + 1}`}/>
+                <div className="select-part-button-container">
+                  {
+                    teamContent.teamData.map((val, index) => (
+                      <button key={index} onClick={() => onSelectMemberHandler(index)}
+                              className={`select-part-button-item bg-primary ${index === memberSelected && "select-part-button-item-active"}`}>Member {index + 1}
+                      </button>
+                    ))
+                  }
+                </div>
               </Col>
               <Col lg={6} md={6} sm={12} className="editor-item">
                 <EditorTitle title={"Member's Name"}/>
-                <EditorComp newValue={setTeamMemberName} content={teamContent.teamData[memberSelected].name || ""}/>
+                <EditorComp newValue={setTeamMemberName} content={teamContent.teamData[memberSelected]?.name || ""}/>
               </Col>
             </Row>
             <Row className="editor-top-container">
               <Col lg={6} md={6} sm={12} className="editor-item">
                 <EditorTitle title={"Member's position"}/>
                 <EditorComp newValue={setTeamMemberPosition}
-                            content={teamContent.teamData[memberSelected].position || ""}/>
+                            content={teamContent.teamData[memberSelected]?.position || ""}/>
               </Col>
               <Col lg={6} md={6} sm={12} className="editor-item">
                 <EditorTitle title={"Image Upload"}/>
@@ -91,7 +89,7 @@ const TeamEditor = () => {
             <Row className="editor-update-button">
               <div className="update-button-container d-flex justify-content-center align-items-center">
                 <Button className="update-btn" onClick={onUpdateBtnClick}
-                        disabled={isLoading}>{isLoading ? "Updating" : "Update"}</Button>
+                        disabled={isLoading || (memberSelected === null)}>{isLoading ? "Updating" : "Update"}</Button>
               </div>
             </Row>
           </>

@@ -7,15 +7,15 @@ import MainHowItWorks from "components/mainHowItWork/MainHowItWorks";
 import api from "configs/axios";
 import {finishUpdate} from "redux/finishUpdate/finishUpdateAction";
 import {getHowWorkContent} from "redux/howWorkContent/howWorkContentAction";
+import LoadingComp from "components/loadingComp/LoadingComp";
 
 import "./HowWorkEditor.scss";
-import LoadingComp from "components/loadingComp/LoadingComp";
 
 const HowWorkEditor = () => {
   const dispatch = useDispatch();
   const howWorkContent = useSelector((state) => state.howWorkContent);
   const [isLoading, setIsLoading] = useState(false);
-  const [partEditSelected, setPartEditSelected] = useState("");
+  const [partEditSelected, setPartEditSelected] = useState(null);
   const [description, setDescription] = useState("");
   const [detail1, setDetail1] = useState("");
   const [detail2, setDetail2] = useState("");
@@ -24,7 +24,6 @@ const HowWorkEditor = () => {
   const [detail5, setDetail5] = useState("");
   const onSelectPartHandler = (index) => {
     setPartEditSelected(index);
-    setDescription(howWorkContent.howWorkData[index].description);
   };
   const onUpdateBtnClick = async () => {
     setIsLoading(true);
@@ -48,33 +47,32 @@ const HowWorkEditor = () => {
       dispatch(getHowWorkContent());
     }
   };
-  console.log(description)
   return (
     <Container fluid className="editor-container">
       {
-        howWorkContent.howWorkData.l <= 0 ? (
+        howWorkContent.howWorkData.length <= 0 ? (
           <LoadingComp/>
         ) : (
           <>
             <Row className="editor-top-container">
               <Col className="editor-item d-flex flex-column justify-content-center align-items-center">
-                <EditorTitle title={"Select part to edit"}/>
-                {/*<Form.Group onChange={onSelectPartHandler} className="how-work-select">*/}
-                {/*  <Form.Select>*/}
-                {/*    <option disabled selected>Select part</option>*/}
-                {/*    <option value="0">Part 1</option>*/}
-                {/*    <option value="1">Part 2</option>*/}
-                {/*  </Form.Select>*/}
-                {/*</Form.Group>*/}
-                <button onClick={() => onSelectPartHandler(0)}>Part 1</button>
-                <button onClick={() => onSelectPartHandler(1)}>Part 2</button>
+                <EditorTitle title={(partEditSelected === null) ? "Select part to edit" : `Editing part ${partEditSelected + 1}`}/>
+                <div className="select-part-button-container">
+                  {
+                    howWorkContent.howWorkData.map((val, index) => (
+                      <button key={index} onClick={() => onSelectPartHandler(index)}
+                              className={`select-part-button-item bg-primary ${index === partEditSelected && "select-part-button-item-active"}`}>Part {index + 1}
+                      </button>
+                    ))
+                  }
+                </div>
               </Col>
             </Row>
             <Row className="editor-top-container">
               <Col className="editor-item">
                 <EditorTitle title={"How It Works's Description"}/>
                 <EditorComp newValue={setDescription}
-                            content={description}/>
+                            content={howWorkContent.howWorkData[partEditSelected]?.description || ""}/>
               </Col>
               <Col className="editor-item">
                 <EditorTitle title={"How It Work's Detail 1"}/>
@@ -109,7 +107,7 @@ const HowWorkEditor = () => {
             <Row className="editor-update-button">
               <div className="update-button-container d-flex justify-content-center align-items-center">
                 <Button className="update-btn" onClick={onUpdateBtnClick}
-                        disabled={isLoading || !partEditSelected}>{isLoading ? "Updating" : "Update"}</Button>
+                        disabled={isLoading || (partEditSelected === null)}>{isLoading ? "Updating" : "Update"}</Button>
               </div>
             </Row>
           </>

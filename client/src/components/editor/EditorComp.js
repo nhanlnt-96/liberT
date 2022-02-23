@@ -12,17 +12,30 @@ const EditorComp = ({
                       newValue,
                       content
                     }) => {
-  const blocksFromHtml = htmlToDraft(content);
-  const {
-    contentBlocks,
-    entityMap
-  } = blocksFromHtml;
-  const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
-  const [editorState, setEditorState] = useState(EditorState.createWithContent(contentState));
+  // helper function
+  const createText = (text) => {
+    const blocksFromHtml = htmlToDraft(text);
+    const {
+      contentBlocks,
+      entityMap
+    } = blocksFromHtml;
+    const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+    return EditorState.createWithContent(contentState);
+  };
+  
+  // define the local state, using the createState callback to create the initial value
+  const [editorState, setEditorState] = useState(createText(content));
+  
+  // override the local state any time that the props change
+  useEffect(() => {
+    setEditorState(createText(content));
+  }, [content]);
+  
   const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
     newValue(draftToHtml(convertToRaw(editorState.getCurrentContent())));
   };
+  
   return (
     <Container className="editor-comp-container">
       <Editor

@@ -4,7 +4,6 @@ import api from "configs/axios";
 import {finishUpdate} from "redux/finishUpdate/finishUpdateAction";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import EditorTitle from "components/editorTitle/EditorTitle";
-import UploadImg from "components/uploadImg/UploadImg";
 import {getCollectionsContent} from "redux/collectionsContent/collectionsContentAction";
 import MainCollections from "components/mainCollections/MainCollections";
 import {UploadMultiImg} from "components/uploadImg";
@@ -40,7 +39,7 @@ const CollectionsEditor = () => {
       <Row className="editor-update-button">
         <div className="update-button-container d-flex justify-content-center align-items-center">
           <Button className="update-btn" onClick={onUpdateBtnClick}
-                  disabled={isLoading || uploadedImgsData.imgsUploadedData.length <= 0}>{isLoading ? "Updating" : "Update"}</Button>
+                  disabled={isLoading || uploadedImgsData.imgsUploadedData.length <= 0 || imgInfo.length <= 0}>{isLoading ? "Updating" : "Update"}</Button>
         </div>
       </Row>
       <Row>

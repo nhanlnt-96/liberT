@@ -15,11 +15,11 @@ const FaqEditor = () => {
   const dispatch = useDispatch();
   const faqContent = useSelector((state) => state.faqContent);
   const [isLoading, setIsLoading] = useState(false);
-  const [faqSelected, setFaqSelected] = useState("");
+  const [faqSelected, setFaqSelected] = useState(null);
   const [faqQuestion, setFaqQuestion] = useState("");
   const [faqAnswer, setFaqAnswer] = useState("");
-  const onSelectPhaseHandler = (e) => {
-    setFaqSelected(e.target.value);
+  const onSelectFaqHandler = (index) => {
+    setFaqSelected(index);
   };
   const onUpdateBtnClick = async () => {
     setIsLoading(true);
@@ -44,33 +44,32 @@ const FaqEditor = () => {
           <>
             <Row className="editor-top-container">
               <Col className="editor-item d-flex flex-column justify-content-center align-items-center">
-                <EditorTitle title={"Select FAQ to edit"}/>
-                <Form.Group onChange={onSelectPhaseHandler} className="how-work-select">
-                  <Form.Select>
-                    <option disabled selected>Select part</option>
-                    {
-                      faqContent.faqData.map((val, index) => (
-                        <option key={index} value={index}>Question {index + 1}</option>
-                      ))
-                    }
-                  </Form.Select>
-                </Form.Group>
+                <EditorTitle title={(faqSelected === null) ? "Select FAQ to edit" : `Editing FAQ ${faqSelected + 1}`}/>
+                <div className="select-part-button-container">
+                  {
+                    faqContent.faqData.map((val, index) => (
+                      <button key={index} onClick={() => onSelectFaqHandler(index)}
+                              className={`select-part-button-item bg-primary ${index === faqSelected && "select-part-button-item-active"}`}>FAQ number {index + 1}
+                      </button>
+                    ))
+                  }
+                </div>
               </Col>
             </Row>
             <Row className="editor-top-container">
               <Col className="editor-item">
                 <EditorTitle title={"FAQ's Question"}/>
-                <EditorComp newValue={setFaqQuestion} content={faqContent.faqData?.question || ""}/>
+                <EditorComp newValue={setFaqQuestion} content={faqContent.faqData[faqSelected]?.question || ""}/>
               </Col>
               <Col className="editor-item">
                 <EditorTitle title={"FAQ's Answer"}/>
-                <EditorComp newValue={setFaqAnswer} content={faqContent.faqData?.answer || ""}/>
+                <EditorComp newValue={setFaqAnswer} content={faqContent.faqData[faqSelected]?.answer || ""}/>
               </Col>
             </Row>
             <Row className="editor-update-button">
               <div className="update-button-container d-flex justify-content-center align-items-center">
                 <Button className="update-btn" onClick={onUpdateBtnClick}
-                        disabled={isLoading || !faqSelected}>{isLoading ? "Updating" : "Update"}</Button>
+                        disabled={isLoading || (faqSelected === null)}>{isLoading ? "Updating" : "Update"}</Button>
               </div>
             </Row>
           </>
