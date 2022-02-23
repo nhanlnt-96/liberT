@@ -38,7 +38,7 @@ export const UploadMultiImg = ({
       </div>
       {
         uploadedImgsData.imgsUploadedData.length > 0 ? (
-          <div className="multi-img-preview d-flex justify-content-center align-items-center">
+          <div className="multi-img-preview d-flex align-items-center">
             <div className="multi-img-track d-flex">
               {
                 uploadedImgsData.imgsUploadedData.map((val, index) => (

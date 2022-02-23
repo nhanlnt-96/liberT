@@ -1,10 +1,11 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Container, Spinner} from "react-bootstrap";
 import styled from "styled-components";
 import firebase from "firebase/compat";
 import {getStorage, deleteObject, ref} from "firebase/storage";
 import {AiOutlineDelete} from "react-icons/all";
 import {generateFileName} from "helpers/generateFileName";
+import ToastNoti from "components/mainBanner/component/ToastNoti";
 
 import "./UploadImg.scss";
 
@@ -20,10 +21,14 @@ export const UploadImg = ({
                             imgInfo,
                             setImgInfo,
                             currentImgName,
-                            currentImgUrl
+                            currentImgUrl,
                           }) => {
   const hiddenFileInput = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState({
+    status: false,
+    msg: ""
+  });
   const onUploadBtnClick = (e) => {
     hiddenFileInput.current.click();
   };
@@ -47,20 +52,43 @@ export const UploadImg = ({
     });
   };
   const onRemoveImgUpload = (imgFolder, imgName) => {
-    setIsLoading(true);
-    const storage = getStorage();
-    const desertRef = ref(storage, `${imgFolder}/${imgName}`);
-    deleteObject(desertRef).then(() => {
-      setIsLoading(false);
-      if (!currentImgUrl) setImgInfo({
-        imgName: "",
-        imgUrl: ""
+    if (currentImgUrl && !imgInfo.imgName && !imgInfo.imgUrl) {
+      setErrorMsg({
+        status: true,
+        msg: "You cannot remove this image. If you want to change current image, please upload the new one."
       });
-    }).catch((error) => {
-      setIsLoading(false);
-      console.error(error);
-    });
+    } else {
+      setIsLoading(true);
+      const storage = getStorage();
+      const desertRef = ref(storage, `${imgFolder}/${imgName}`);
+      deleteObject(desertRef).then(() => {
+        setIsLoading(false);
+        if (imgInfo.imgName || imgInfo.imgUrl) {
+          setImgInfo({
+            imgName: "",
+            imgUrl: ""
+          });
+        }
+        setErrorMsg({
+          status: true,
+          msg: "Removed image."
+        });
+      }).catch((error) => {
+        setIsLoading(false);
+        console.error(error);
+      });
+    }
   };
+  useEffect(() => {
+    if (errorMsg.status) {
+      setTimeout(() => {
+        setErrorMsg({
+          status: false,
+          msg: ""
+        });
+      }, 2000);
+    }
+  }, [errorMsg.status]);
   return (
     <Container fluid className="upload-comp d-flex flex-column justify-content-center align-items-center">
       {
@@ -92,6 +120,11 @@ export const UploadImg = ({
             </button>
             <img src={currentImgUrl} alt="liberT-admin"/>
           </div>
+        )
+      }
+      {
+        errorMsg.status && (
+          <ToastNoti errorMsg={errorMsg.msg} position={"top-center"}/>
         )
       }
     </Container>

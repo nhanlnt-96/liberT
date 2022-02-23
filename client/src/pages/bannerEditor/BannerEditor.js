@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, {useState} from "react";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import EditorComp from "components/editor/EditorComp";
 import EditorTitle from "components/editorTitle/EditorTitle";
@@ -37,6 +37,9 @@ const BannerEditor = () => {
     imgName: "",
     imgUrl: ""
   });
+  const onRefreshPreview = () => {
+    dispatch(getBannerContent());
+  };
   const onUpdateBtnClick = async () => {
     setIsLoading(true);
     const response = await api.patch(`/banner/update/${id}`, {
@@ -64,9 +67,10 @@ const BannerEditor = () => {
         imgName: "",
         imgUrl: ""
       });
-      dispatch(getBannerContent());
+      onRefreshPreview();
     }
   };
+  
   return (
     <Container fluid className="editor-container">
       {
