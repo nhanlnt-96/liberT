@@ -58,7 +58,7 @@ export const UploadMultiImg = ({
             <Spinner animation="grow" variant="primary"/>
           </div>
         ) : currentImg.length > 0 && (
-          <div className="multi-img-preview d-flex justify-content-center align-items-center overflow-scroll">
+          <div className="multi-img-preview d-flex align-items-center overflow-scroll">
             <div className="multi-img-track d-flex">
               {
                 currentImg.map((val, index) => (

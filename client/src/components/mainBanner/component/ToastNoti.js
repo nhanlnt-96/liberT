@@ -3,7 +3,8 @@ import {Toast, ToastContainer} from "react-bootstrap";
 
 const ToastNoti = ({
                      errorMsg,
-                     position
+                     position,
+                     titleNoti
                    }) => {
   const [showToast, setShowToast] = useState(false);
   useEffect(() => {
@@ -19,7 +20,7 @@ const ToastNoti = ({
                     position={position ? position : "bottom-end"}>
       <Toast show={showToast}>
         <Toast.Header closeButton={false}>
-          <strong className="me-auto">Error</strong>
+          <strong className="me-auto">{titleNoti ? titleNoti : "Error"}</strong>
         </Toast.Header>
         <Toast.Body>{errorMsg}</Toast.Body>
       </Toast>

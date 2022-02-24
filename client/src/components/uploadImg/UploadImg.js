@@ -27,7 +27,8 @@ export const UploadImg = ({
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState({
     status: false,
-    msg: ""
+    msg: "",
+    titleNoti: ""
   });
   const onUploadBtnClick = (e) => {
     hiddenFileInput.current.click();
@@ -55,7 +56,8 @@ export const UploadImg = ({
     if (currentImgUrl && !imgInfo.imgName && !imgInfo.imgUrl) {
       setErrorMsg({
         status: true,
-        msg: "You cannot remove this image. If you want to change current image, please upload the new one."
+        msg: "You cannot remove this image. If you want to change current image, please upload the new one.",
+        titleNoti: "Error"
       });
     } else {
       setIsLoading(true);
@@ -71,7 +73,8 @@ export const UploadImg = ({
         }
         setErrorMsg({
           status: true,
-          msg: "Removed image."
+          msg: "Removed image.",
+          titleNoti: "Successful"
         });
       }).catch((error) => {
         setIsLoading(false);
@@ -124,7 +127,7 @@ export const UploadImg = ({
       }
       {
         errorMsg.status && (
-          <ToastNoti errorMsg={errorMsg.msg} position={"top-center"}/>
+          <ToastNoti errorMsg={errorMsg.msg} position={"top-center"} titleNoti={errorMsg.titleNoti}/>
         )
       }
     </Container>

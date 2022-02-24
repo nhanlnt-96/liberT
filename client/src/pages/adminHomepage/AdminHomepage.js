@@ -1,6 +1,6 @@
 import React from "react";
 import {Container, Row} from "react-bootstrap";
-import Logo from "assets/imgs/bgLogin.svg";
+import Logo from "assets/imgs/bgAdminHome.svg";
 
 import "./AdminHomepage.scss";
 import UploadImg from "components/uploadImg/UploadImg";
