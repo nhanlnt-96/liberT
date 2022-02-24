@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Alert, Col, Container, Row} from "react-bootstrap";
-import BgLogin from "../../assets/imgs/bgLogin.svg";
+import BgLogin from "../../assets/imgs/bgLogin.png";
 import * as Yup from "yup";
 import {ErrorMessage, Form, Formik, Field} from "formik";
 import {useDispatch, useSelector} from "react-redux";
@@ -36,10 +36,11 @@ const LoginPage = () => {
   return (
     <Container fluid className="login-page">
       <Row className="login-page-container">
-        <Col lg={6} md={7} sm={12} className="login-form-container d-flex justify-content-center align-items-center">
+        <Col lg={6} md={12} sm={12} className="login-form-container d-flex justify-content-center align-items-center">
           <div className="login-form-box">
             <div className="login-form-title">
-              <h2 className="title">Login to Admin page</h2>
+              <h2 className="title">Welcome back</h2>
+              <p className="subtitle">Welcome back! Please enter you details!</p>
             </div>
             {
               errorMsg && (
@@ -70,8 +71,8 @@ const LoginPage = () => {
             </Formik>
           </div>
         </Col>
-        <Col lg={6} md={5} sm={12} className="login-page-bg d-flex justify-content-center align-items-center">
-          <img src={BgLogin} alt="login-page"/>
+        <Col lg={6} md={12} sm={12} className="login-page-bg d-flex justify-content-center align-items-end">
+          <img src={BgLogin} alt=""/>
         </Col>
       </Row>
     </Container>
